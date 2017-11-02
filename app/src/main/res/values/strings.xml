@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ProjectLeerlingenApp</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_eerste_keer_openen">EersteKeerOpenenActivity</string>
+    <string name="smaller"><![CDATA[<]]></string>
+    <string name="bigger"><![CDATA[>]]></string>
+    <string name="wie_zal_deze_app_gebruiken">Wie zal deze app gebruiken?</string>
+</resources>
