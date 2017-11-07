@@ -92,7 +92,22 @@ public class EersteKeerOpenenActivity extends AppCompatActivity implements Eerst
 
     @Override
     public void goToFinalStep() {
+        EersteKeerOpenenStap6Fragment f = new EersteKeerOpenenStap6Fragment();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_container, f);
+        ft.addToBackStack(null);
+        ft.commit();
+    }
 
+    @Override
+    public void goToLoginScreen() {
+        LoginFragment f = new LoginFragment();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_container, f);
+        ft.addToBackStack(null);
+        ft.commit();
     }
 
     @Override
