@@ -16,7 +16,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="50dp"
-            android:text="Welke icoon wil Niels?"
+            android:text="Welke icoon wil {persoon}?"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="30sp"

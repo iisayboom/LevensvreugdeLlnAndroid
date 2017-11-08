@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.dreeki.projectleerlingenapp.Activities.RouteActivity;
 import com.example.dreeki.projectleerlingenapp.Interfaces.EersteKeerOpenenInterface;
@@ -24,6 +25,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         Button b1 = v.findViewById(R.id.btnGoToRoutes);
 
         b1.setOnClickListener(this);
+
+        TextView tv = v.findViewById(R.id.tvIcoonPersoon);
+
+        tv.setText(tv.getText().toString().replace("{persoon}", ((EersteKeerOpenenInterface)getActivity()).getName()));
 
         return v;
     }

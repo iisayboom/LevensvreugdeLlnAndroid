@@ -44,11 +44,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tvIcoonPersoon"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginTop="64dp"
-            android:text="Waar woont Niels?"
+            android:text="Waar woont {persoon}?"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="30sp"
@@ -71,7 +71,7 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toStartOf="@+id/editText3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon" />
 
         <EditText
             android:id="@+id/editText3"
@@ -83,7 +83,7 @@
             android:hint="Nr"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon" />
 
         <EditText
             android:id="@+id/editText4"

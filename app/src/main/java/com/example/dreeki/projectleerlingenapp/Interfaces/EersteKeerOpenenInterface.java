@@ -19,7 +19,6 @@ public interface EersteKeerOpenenInterface {
     void goToStep5();
     void goToFinalStep();
     void goToLoginScreen();
-    void voltooiInstellingen();
     String getName();
     PersonalPicture getPicture();
     String getStreet();

@@ -57,14 +57,15 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@+id/btnGoNextStep5"
             app:layout_constraintStart_toEndOf="@+id/btnGoPreviousStep5"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginRight="8dp" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/tvIcoonPersoon"
             android:layout_width="380dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="Welke hulpmiddelen kan Niels gebruiken?"
+            android:text="Welke hulpmiddelen kan {persoon} gebruiken?"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="30sp"
@@ -88,7 +89,7 @@
             app:layout_constraintEnd_toStartOf="@+id/switch4"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10"
+            app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon"
             android:layout_marginRight="8dp" />
 
         <TextView
@@ -134,7 +135,7 @@
             android:theme="@style/SwitchTheme"
             android:thumbTint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10"
+            app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon"
             android:layout_marginRight="92dp" />
 
         <TextView

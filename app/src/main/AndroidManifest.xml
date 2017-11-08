@@ -16,11 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Activities.EersteKeerOpenenActivity"
-            android:label="@string/title_activity_eerste_keer_openen"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.StartupActivity" />
         <activity android:name=".Activities.RouteActivity"></activity>
     </application>
 

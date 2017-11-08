@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.dreeki.projectleerlingenapp.Interfaces.EersteKeerOpenenInterface;
 import com.example.dreeki.projectleerlingenapp.R;
@@ -23,6 +24,10 @@ public class EersteKeerOpenenStap6Fragment extends Fragment implements View.OnCl
 
         b1.setOnClickListener(this);
         b2.setOnClickListener(this);
+
+        TextView tv = v.findViewById(R.id.tvIcoonPersoon);
+
+        tv.setText(tv.getText().toString().replace("{persoon}", ((EersteKeerOpenenInterface)getActivity()).getName()));
 
         return v;
     }

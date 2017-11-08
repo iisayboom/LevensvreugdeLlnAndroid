@@ -46,11 +46,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/tvIcoonPersoon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
-            android:text="Wie is de begeleider van Niels?"
+            android:text="Waar woont de begeleider van {persoon}?"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="30sp"
@@ -73,7 +73,7 @@
             android:inputType="textAutoComplete|textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon" />
 
         <EditText
             android:id="@+id/editText6"
