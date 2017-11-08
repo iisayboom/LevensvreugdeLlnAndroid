@@ -1,13 +1,396 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.dreeki.projectleerlingenapp.Fragments.Benodigdheden">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:background="@color/blue">
+
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/imageButtonTrein21"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/my_button"
+                    android:drawableTop="@drawable/buspas"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:scaleType="fitXY"
+                    android:text="Bussy Pass"
+                    android:textColor="@color/white" />
+
+
+                <Button
+                    android:id="@+id/imageButtonVoet31"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/my_button"
+                    android:drawableTop="@drawable/buspas"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:scaleType="fitXY"
+                    android:text="Bussy Pass"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/imageButtonTrein22"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/my_button"
+                    android:drawableTop="@drawable/buspas"
+                    android:paddingTop="16dp" android:paddingBottom="16dp"
+                    android:scaleType="fitXY"
+                    android:text="Bussy Pass"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/imageButtonVoet32"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/my_button"
+                    android:drawableTop="@drawable/buspas"
+                    android:paddingTop="16dp" android:paddingBottom="16dp"
+                    android:scaleType="fitXY"
+                    android:text="Bussy Pass"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/imageButtonTrein23"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/my_button"
+                    android:drawableTop="@drawable/buspas"
+                    android:paddingTop="16dp" android:paddingBottom="16dp"
+                    android:scaleType="fitXY"
+                    android:text="Bussy Pass"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/imageButtonVoet33"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/my_button"
+                    android:drawableTop="@drawable/buspas"
+                    android:paddingTop="16dp" android:paddingBottom="16dp"
+                    android:scaleType="fitXY"
+                    android:text="Bussy Pass"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/imageButtonTrein24"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/my_button"
+                    android:drawableTop="@drawable/buspas"
+                    android:paddingTop="16dp" android:paddingBottom="16dp"
+                    android:scaleType="fitXY"
+                    android:text="Bussy Pass"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/imageButtonVoet34"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/my_button"
+                    android:drawableTop="@drawable/buspas"
+                    android:paddingTop="16dp" android:paddingBottom="16dp"
+                    android:scaleType="fitXY"
+                    android:text="Bussy Pass"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/imageButtonTrein25"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/my_button"
+                    android:drawableTop="@drawable/buspas"
+                    android:paddingTop="16dp" android:paddingBottom="16dp"
+                    android:scaleType="fitXY"
+                    android:text="Bussy Pass"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/imageButtonVoet35"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/my_button"
+                    android:drawableTop="@drawable/buspas"
+                    android:paddingTop="16dp" android:paddingBottom="16dp"
+                    android:scaleType="fitXY"
+                    android:text="Bussy Pass"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/imageButtonTrein26"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/my_button"
+                    android:drawableTop="@drawable/buspas"
+                    android:paddingTop="16dp" android:paddingBottom="16dp"
+                    android:scaleType="fitXY"
+                    android:text="Bussy Pass"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/imageButtonVoet36"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/my_button"
+                    android:drawableTop="@drawable/buspas"
+                    android:paddingTop="16dp" android:paddingBottom="16dp"
+                    android:scaleType="fitXY"
+                    android:text="Bussy Pass"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/imageButtonTrein"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/my_button"
+                    android:drawableTop="@drawable/buspas"
+                    android:paddingTop="16dp" android:paddingBottom="16dp"
+                    android:scaleType="fitXY"
+                    android:text="Bussy Pass"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/imageButtonVoet"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/my_button"
+                    android:drawableTop="@drawable/buspas"
+                    android:paddingTop="16dp" android:paddingBottom="16dp"
+                    android:scaleType="fitXY"
+                    android:text="Bussy Pass"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/imageButtonFiets"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/my_button"
+                    android:drawableTop="@drawable/buspas"
+                    android:paddingTop="16dp" android:paddingBottom="16dp"
+                    android:scaleType="fitXY"
+                    android:text="Bussy Pass"
+                    android:textColor="@color/white" />
+
+
+
+                <Button
+                    android:id="@+id/imageButtonBus"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/my_button"
+                    android:drawableTop="@drawable/buspas"
+                    android:paddingTop="16dp" android:paddingBottom="16dp"
+                    android:scaleType="fitXY"
+                    android:text="Bussy Pass"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.5"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/imageButtonTrein2"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/my_button"
+                    android:drawableTop="@drawable/buspas"
+                    android:paddingTop="16dp" android:paddingBottom="16dp"
+                    android:scaleType="fitXY"
+                    android:text="Bussy Pass"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/imageButtonVoet3"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/my_button"
+                    android:drawableTop="@drawable/buspas"
+                    android:paddingTop="16dp" android:paddingBottom="16dp"
+                    android:scaleType="fitXY"
+                    android:text="Bussy Pass"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        </ScrollView>
+    </android.support.constraint.ConstraintLayout>
 </FrameLayout>
