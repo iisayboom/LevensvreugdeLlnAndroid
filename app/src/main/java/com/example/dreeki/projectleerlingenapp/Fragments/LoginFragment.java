@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dreeki.projectleerlingenapp.Activities.RouteActivity;
+import com.example.dreeki.projectleerlingenapp.Activities.SettingsActivity;
 import com.example.dreeki.projectleerlingenapp.Interfaces.EersteKeerOpenenInterface;
 import com.example.dreeki.projectleerlingenapp.Interfaces.RouteInterface;
 import com.example.dreeki.projectleerlingenapp.R;
@@ -24,8 +25,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_login, container, false);
 
         Button b1 = v.findViewById(R.id.btnGoToRoutes);
+        ImageView i1 = v.findViewById(R.id.btnSettings);
 
         b1.setOnClickListener(this);
+        i1.setOnClickListener(this);
 
         TextView tv = v.findViewById(R.id.tvIcoonPersoon);
 
@@ -43,6 +46,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             case R.id.btnGoToRoutes:
                 Intent intent = new Intent(this.getActivity(), RouteActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.btnSettings:
+                Intent intent2 = new Intent(this.getActivity(), SettingsActivity.class);
+                startActivity(intent2);
                 break;
         }
     }
