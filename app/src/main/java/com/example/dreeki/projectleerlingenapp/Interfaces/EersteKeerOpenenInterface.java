@@ -36,4 +36,5 @@ public interface EersteKeerOpenenInterface {
     void setMentor(Mentor mentor);
     void setPostalCode(int postalCode);
     void setToolList(List<Tool> toolList);
+    void showTestFrame();
 }

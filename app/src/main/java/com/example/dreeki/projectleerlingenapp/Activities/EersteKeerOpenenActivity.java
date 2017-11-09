@@ -41,6 +41,16 @@ public class EersteKeerOpenenActivity extends AppCompatActivity implements Eerst
     }
 
     @Override
+    public void showTestFrame() {
+        BenodigdheidFragment f = new BenodigdheidFragment();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_container, f);
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
+    @Override
     public void goToStep1(){
         EersteKeerOpenenStap1Fragment f = new EersteKeerOpenenStap1Fragment();
         FragmentManager fm = getSupportFragmentManager();
