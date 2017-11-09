@@ -60,7 +60,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/invoerStraat"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
@@ -69,12 +69,12 @@
             android:ems="10"
             android:hint="Straat"
             android:inputType="textPersonName"
-            app:layout_constraintEnd_toStartOf="@+id/editText3"
+            app:layout_constraintEnd_toStartOf="@+id/invoerNr"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/invoerNr"
             android:layout_width="54dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="32dp"
@@ -86,7 +86,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/invoerGemeente"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
@@ -97,7 +97,22 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText2" />
+            app:layout_constraintTop_toBottomOf="@+id/invoerStraat" />
+
+        <EditText
+            android:id="@+id/invoerPostcode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Postcode"
+            android:inputType="textPersonName"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/invoerGemeente" />
     </android.support.constraint.ConstraintLayout>
 
 

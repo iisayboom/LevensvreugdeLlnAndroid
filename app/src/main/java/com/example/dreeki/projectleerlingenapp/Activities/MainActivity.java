@@ -25,6 +25,7 @@ import com.example.dreeki.projectleerlingenapp.Models.Profile;
 import com.example.dreeki.projectleerlingenapp.Models.User;
 import com.example.dreeki.projectleerlingenapp.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements EersteKeerOpenenInterface {
@@ -37,11 +38,16 @@ public class MainActivity extends AppCompatActivity implements EersteKeerOpenenI
     private Mentor mentor;
     private int postalCode;
     private List<Tool> toolList;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        picture = new PersonalPicture();
+        mentor = new Mentor();
+        toolList = new ArrayList<>();
+
 
         prefs = getSharedPreferences("com.example.dreeki.projectleerlingenapp", MODE_PRIVATE);
 
@@ -127,8 +133,9 @@ public class MainActivity extends AppCompatActivity implements EersteKeerOpenenI
     @Override
     public void goToLoginScreen() {
         Profile profile = new Profile(null, picture, name, street, number, city, postalCode);
-        Destination homeDestination = new Destination(null, street, city, number, postalCode);
-        User user = new User(mentor, profile, homeDestination, toolList);
+        //prentje aanpassen naar huisje
+        Destination homeDestination = new Destination(R.drawable.voet, street, city, number, postalCode);
+        user = new User(mentor, profile, homeDestination, toolList);
 
         prefs.edit().putBoolean("firstrun", false).commit();
 
@@ -178,6 +185,11 @@ public class MainActivity extends AppCompatActivity implements EersteKeerOpenenI
     @Override
     public List<Tool> getToolList() {
         return this.toolList;
+    }
+
+    @Override
+    public User getUser() {
+        return user;
     }
 
     @Override

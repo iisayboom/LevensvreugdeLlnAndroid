@@ -26,4 +26,28 @@ public class User {
         this.profile = profile;
         this.tools = tools;
     }
+
+    public List<Destination> getDestinations() {
+        return destinations;
+    }
+
+    public List<Mentor> getMentors() {
+        return mentors;
+    }
+
+    public List<Tool> getTools() {
+        return tools;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public TravellingState getTravellingState() {
+        return travellingState;
+    }
+
+    public void setTravellingState(TravellingState travellingState) {
+        this.travellingState = travellingState;
+    }
 }

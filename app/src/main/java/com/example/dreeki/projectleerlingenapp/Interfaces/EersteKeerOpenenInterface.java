@@ -4,6 +4,7 @@ import android.view.View;
 
 import com.example.dreeki.projectleerlingenapp.Models.Mentor;
 import com.example.dreeki.projectleerlingenapp.Models.PersonalPicture;
+import com.example.dreeki.projectleerlingenapp.Models.User;
 
 import java.util.List;
 
@@ -27,6 +28,7 @@ public interface EersteKeerOpenenInterface {
     Mentor getMentor();
     int getPostalCode();
     List<Tool> getToolList();
+    User getUser();
     void setName(String name);
     void setStreet(String street);
     void setCity(String city);

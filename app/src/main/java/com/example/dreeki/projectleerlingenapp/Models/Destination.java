@@ -5,13 +5,13 @@ package com.example.dreeki.projectleerlingenapp.Models;
  */
 
 public class Destination {
-    private String picture;
+    private int picture;
     private String street;
     private String city;
     private int number;
     private int postalCode;
 
-    public Destination(String picture, String street, String city, int number, int postalCode){
+    public Destination(int picture, String street, String city, int number, int postalCode){
         this.picture = picture;
         this.street = street;
         this.city = city;
@@ -35,7 +35,7 @@ public class Destination {
         return city;
     }
 
-    public String getPicture() {
+    public int getPicture() {
         return picture;
     }
 
@@ -51,7 +51,7 @@ public class Destination {
         this.city = city;
     }
 
-    public void setPicture(String picture) {
+    public void setPicture(int picture) {
         this.picture = picture;
     }
 

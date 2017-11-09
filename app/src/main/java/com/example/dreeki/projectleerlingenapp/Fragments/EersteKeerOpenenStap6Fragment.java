@@ -36,9 +36,7 @@ public class EersteKeerOpenenStap6Fragment extends Fragment implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnGoToLogin:
-                if(true){
-                    ((EersteKeerOpenenInterface) getActivity()).goToLoginScreen();
-                }
+                ((EersteKeerOpenenInterface) getActivity()).goToLoginScreen();
                 break;
             case R.id.btnGoPreviousStep6:
                 ((EersteKeerOpenenInterface) getActivity()).goToStep5();

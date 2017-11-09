@@ -32,7 +32,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Switch
-            android:id="@+id/switch5"
+            android:id="@+id/switchGps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="92dp"
@@ -43,7 +43,7 @@
             android:theme="@style/SwitchTheme"
             android:thumbTint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch1"
+            app:layout_constraintTop_toBottomOf="@+id/switchCamera"
             android:layout_marginRight="92dp" />
 
         <TextView
@@ -86,7 +86,7 @@
             android:layout_marginTop="32dp"
             android:text="De Lijn App"
             android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@+id/switch4"
+            app:layout_constraintEnd_toStartOf="@+id/switchLijn"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon"
@@ -102,14 +102,14 @@
             android:layout_marginTop="8dp"
             android:text="Camera"
             android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@+id/switch1"
+            app:layout_constraintEnd_toStartOf="@+id/switchCamera"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView11"
             android:layout_marginRight="8dp" />
 
         <Switch
-            android:id="@+id/switch1"
+            android:id="@+id/switchCamera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="92dp"
@@ -120,11 +120,11 @@
             android:theme="@style/SwitchTheme"
             android:thumbTint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch4"
+            app:layout_constraintTop_toBottomOf="@+id/switchLijn"
             android:layout_marginRight="92dp" />
 
         <Switch
-            android:id="@+id/switch4"
+            android:id="@+id/switchLijn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="92dp"
@@ -147,7 +147,7 @@
             android:layout_marginTop="8dp"
             android:text="Gps volgen"
             android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@+id/switch5"
+            app:layout_constraintEnd_toStartOf="@+id/switchGps"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView12"
             android:layout_marginRight="8dp"

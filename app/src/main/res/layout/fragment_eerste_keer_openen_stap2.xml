@@ -62,40 +62,43 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/prent1"
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5"
+            app:layout_constraintTop_toBottomOf="@+id/prent2"
             app:srcCompat="@drawable/architect"
-            android:layout_marginLeft="16dp" />
+            android:layout_marginLeft="16dp"
+            android:clickable="true"/>
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/prent2"
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="32dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon"
-            app:srcCompat="@drawable/construction_icon" />
+            app:srcCompat="@drawable/construction_icon"
+            android:clickable="true"/>
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/prent3"
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
-            app:layout_constraintEnd_toStartOf="@+id/imageView4"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintEnd_toStartOf="@+id/prent6"
+            app:layout_constraintStart_toEndOf="@+id/prent1"
             app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon"
-            app:srcCompat="@drawable/cook_male" />
+            app:srcCompat="@drawable/cook_male"
+            android:clickable="true"/>
 
         <ImageView
-            android:id="@+id/imageView7"
+            android:id="@+id/prent4"
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:layout_marginEnd="16dp"
@@ -103,21 +106,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon"
             app:srcCompat="@drawable/fireman_icon"
-            android:layout_marginRight="16dp" />
+            android:layout_marginRight="16dp"
+            android:clickable="true"/>
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/prent5"
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toStartOf="@+id/imageView4"
+            app:layout_constraintEnd_toStartOf="@+id/prent6"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/imageView6"
-            app:srcCompat="@drawable/cook" />
+            app:layout_constraintStart_toEndOf="@+id/prent1"
+            app:layout_constraintTop_toBottomOf="@+id/prent3"
+            app:srcCompat="@drawable/cook"
+            android:clickable="true"/>
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/prent6"
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:layout_marginEnd="16dp"
@@ -125,8 +130,9 @@
             android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView7"
-            app:srcCompat="@drawable/worker" />
+            app:layout_constraintTop_toBottomOf="@+id/prent4"
+            app:srcCompat="@drawable/worker"
+            android:clickable="true"/>
 
     </android.support.constraint.ConstraintLayout>
 

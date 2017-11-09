@@ -62,7 +62,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <EditText
-            android:id="@+id/editText5"
+            android:id="@+id/invoerNaamBegeleider"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -76,7 +76,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon" />
 
         <EditText
-            android:id="@+id/editText6"
+            android:id="@+id/invoerTelefoonBegeleider"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -87,10 +87,10 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText5" />
+            app:layout_constraintTop_toBottomOf="@+id/invoerNaamBegeleider" />
 
         <EditText
-            android:id="@+id/editText7"
+            android:id="@+id/invoerEmailBegeleider"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -101,7 +101,7 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText6" />
+            app:layout_constraintTop_toBottomOf="@+id/invoerTelefoonBegeleider" />
 
     </android.support.constraint.ConstraintLayout>
 

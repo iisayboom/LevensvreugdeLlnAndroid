@@ -5,17 +5,19 @@ package com.example.dreeki.projectleerlingenapp.Models;
  */
 
 public class PersonalPicture {
-    private String pictureLink;
+    private int pictureLinkId;
 
-    public PersonalPicture(String link){
-        pictureLink = link;
+    public PersonalPicture(int pictureLinkId){
+        this.pictureLinkId = pictureLinkId;
     }
 
-    public String getPictureLink() {
-        return pictureLink;
+    public PersonalPicture(){ this.pictureLinkId = -1;}
+
+    public int getPictureLinkId() {
+        return pictureLinkId;
     }
 
-    public void setPictureLink(String pictureLink) {
-        this.pictureLink = pictureLink;
+    public void setPictureLinkId(int pictureLinkId) {
+        this.pictureLinkId = pictureLinkId;
     }
 }

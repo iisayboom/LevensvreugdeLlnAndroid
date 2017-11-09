@@ -9,6 +9,10 @@ public class Mentor {
     private String phoneNumber;
     private String email;
 
+    public Mentor(){
+
+    }
+
     public Mentor(String name, String phoneNumber, String email){
         this.name = name;
         this.phoneNumber = phoneNumber;
