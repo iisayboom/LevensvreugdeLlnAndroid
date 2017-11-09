@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.dreeki.projectleerlingenapp.Fragments.Benodigdheden;
+import com.example.dreeki.projectleerlingenapp.Fragments.BenodigdheidFragment;
 import com.example.dreeki.projectleerlingenapp.Fragments.RouteFragment;
 import com.example.dreeki.projectleerlingenapp.Fragments.VerplaatsManier;
 import com.example.dreeki.projectleerlingenapp.Interfaces.RouteInterface;
@@ -39,7 +39,7 @@ public class RouteActivity extends AppCompatActivity implements RouteInterface{
 
     @Override
     public void toonBenodigdheden() {
-        Benodigdheden f = new Benodigdheden();
+        BenodigdheidFragment f = new BenodigdheidFragment();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fragment_container, f);
