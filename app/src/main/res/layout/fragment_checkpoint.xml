@@ -1,0 +1,100 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.dreeki.projectleerlingenapp.Fragments.CheckpointFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgCheckpoint"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:scaleX="1.5"
+            android:src="@drawable/huis"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtBestemming" />
+
+        <ImageView
+            android:id="@+id/btnGelukt"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:clickable="true"
+            android:src="@drawable/gelukt_poging5000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtStap" />
+
+        <ImageView
+            android:id="@+id/btnGefaald"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginEnd="35dp"
+            android:src="@drawable/help2"
+            app:layout_constraintBottom_toBottomOf="@+id/imgCheckpoint"
+            app:layout_constraintEnd_toEndOf="@+id/imgCheckpoint"
+            app:layout_constraintTop_toBottomOf="@+id/imgCheckpoint"
+            android:layout_marginRight="35dp" />
+
+        <TextView
+            android:id="@+id/txtBestemming"
+            android:paddingLeft="70dp"
+            android:layout_width="0dp"
+            android:layout_height="71dp"
+            android:background="@color/topBarGreen"
+            android:fontFamily="@font/arsenal"
+            android:gravity="center_vertical"
+            android:textAlignment="textStart"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtStap"
+            android:layout_width="327dp"
+            android:layout_height="122dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="60dp"
+            android:fontFamily="@font/arsenal"
+            android:text="Wandel naar het bushokje"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgCheckpoint" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/help_rond"
+            app:layout_constraintBottom_toBottomOf="@+id/imgCheckpoint"
+            app:layout_constraintStart_toStartOf="@+id/imgCheckpoint"
+            app:layout_constraintTop_toBottomOf="@+id/imgCheckpoint" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/list"
+            app:layout_constraintStart_toStartOf="@+id/txtBestemming"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>

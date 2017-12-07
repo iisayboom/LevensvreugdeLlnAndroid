@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.dreeki.projectleerlingenapp.Interfaces.EersteKeerOpenenInterface;
 import com.example.dreeki.projectleerlingenapp.R;
@@ -18,8 +19,8 @@ public class EersteKeerOpenenStap0Fragment extends Fragment implements View.OnCl
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_eerste_keer_openen_stap0, container, false);
 
-        Button b = v.findViewById(R.id.btnGoNextStep0);
-        b.setOnClickListener(this);
+        ImageView iv = v.findViewById(R.id.btnGoNextStep0);
+        iv.setOnClickListener(this);
 
 
         return v;

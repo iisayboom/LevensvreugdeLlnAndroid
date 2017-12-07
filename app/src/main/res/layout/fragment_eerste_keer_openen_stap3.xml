@@ -10,47 +10,14 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="3/6"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@+id/btnGoNextStep3"
-            app:layout_constraintStart_toEndOf="@+id/btnGoPreviousStep3"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btnGoNextStep3"
-            android:layout_width="56dp"
-            android:layout_height="55dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/rounded"
-            android:text="@string/bigger"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btnGoPreviousStep3"
-            android:layout_width="56dp"
-            android:layout_height="55dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/rounded"
-            android:text="@string/smaller"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
             android:id="@+id/tvIcoonPersoon"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="80dp"
+            android:fontFamily="@font/glaresome_bold"
             android:text="Waar woont {persoon}?"
             android:textAlignment="center"
-            android:textColor="@color/white"
+            android:textColor="@android:color/black"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.503"
@@ -63,12 +30,15 @@
             android:id="@+id/invoerStraat"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
             android:ems="10"
+            android:fontFamily="@font/glaresome_regular"
             android:hint="Straat"
             android:inputType="textPersonName"
+            android:text="gbjhnm"
+            android:textColor="@android:color/black"
             app:layout_constraintEnd_toStartOf="@+id/invoerNr"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon" />
@@ -77,11 +47,14 @@
             android:id="@+id/invoerNr"
             android:layout_width="54dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="32dp"
+            android:layout_marginEnd="32dp"
             android:layout_marginTop="32dp"
             android:ems="10"
+            android:fontFamily="@font/glaresome_regular"
             android:hint="Nr"
             android:inputType="textPersonName"
+            android:text="5"
+            android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon" />
 
@@ -93,8 +66,11 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:ems="10"
+            android:fontFamily="@font/glaresome_regular"
             android:hint="Gemeente"
             android:inputType="textPersonName"
+            android:text="bjhkn"
+            android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/invoerStraat" />
@@ -107,12 +83,58 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:ems="10"
+            android:fontFamily="@font/glaresome_regular"
+            android:gravity="start"
             android:hint="Postcode"
             android:inputType="textPersonName"
-            android:textAlignment="center"
+            android:text="7676"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/invoerGemeente" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="0dp"
+            android:layout_height="71dp"
+            android:background="@color/topBarGreen"
+            android:fontFamily="@font/glaresome_bold"
+            android:paddingTop="10dp"
+            android:text="5/6"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btnGoNextStep3"
+            android:layout_width="41dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/arrow_right"
+            app:layout_constraintBottom_toBottomOf="@+id/textView6"
+            app:layout_constraintEnd_toEndOf="@+id/textView6"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginRight="24dp" />
+
+        <ImageView
+            android:id="@+id/btnGoPreviousStep3"
+            android:layout_width="41dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/arrow_left"
+            app:layout_constraintBottom_toBottomOf="@+id/textView6"
+            app:layout_constraintStart_toStartOf="@+id/textView6"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="24dp" />
     </android.support.constraint.ConstraintLayout>
 
 

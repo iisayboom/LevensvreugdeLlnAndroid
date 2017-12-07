@@ -10,129 +10,83 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/textView8"
+            android:layout_width="412dp"
+            android:layout_height="71dp"
+            android:background="@color/topBarGreen"
+            android:fontFamily="@font/glaresome_bold"
+            android:paddingTop="10dp"
+            android:text="4/6"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            app:layout_constraintHorizontal_bias="0.529"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/tvIcoonPersoon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="80dp"
+            android:fontFamily="@font/glaresome_regular"
             android:text="Welke icoon wil {persoon}?"
             android:textAlignment="center"
-            android:textColor="@color/white"
+            android:textColor="@android:color/black"
             android:textSize="30sp"
             app:layout_constraintHorizontal_bias="0.428"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="26dp"
-            android:text="2/6"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toStartOf="@+id/btnGoNextStep2"
-            app:layout_constraintStart_toEndOf="@+id/btnGoPreviousStep2"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btnGoNextStep2"
-            android:layout_width="56dp"
-            android:layout_height="55dp"
-            android:background="@drawable/rounded"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/bigger"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btnGoPreviousStep2"
-            android:layout_width="56dp"
-            android:layout_height="55dp"
-            android:background="@drawable/rounded"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/smaller"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/prent1"
-            android:layout_width="100dp"
-            android:layout_height="120dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/prent2"
-            app:srcCompat="@drawable/architect"
-            android:layout_marginLeft="16dp"
-            android:clickable="true"/>
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
         <ImageView
             android:id="@+id/prent2"
-            android:layout_width="100dp"
-            android:layout_height="120dp"
+            android:layout_width="180dp"
+            android:layout_height="190dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="32dp"
+            android:clickable="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon"
-            app:srcCompat="@drawable/construction_icon"
-            android:clickable="true"/>
+            app:srcCompat="@drawable/construction_icon" />
 
         <ImageView
             android:id="@+id/prent3"
-            android:layout_width="100dp"
-            android:layout_height="120dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintEnd_toStartOf="@+id/prent6"
-            app:layout_constraintStart_toEndOf="@+id/prent1"
-            app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon"
-            app:srcCompat="@drawable/cook_male"
-            android:clickable="true"/>
-
-        <ImageView
-            android:id="@+id/prent4"
-            android:layout_width="100dp"
-            android:layout_height="120dp"
+            android:layout_width="180dp"
+            android:layout_height="190dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="32dp"
+            android:clickable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon"
-            app:srcCompat="@drawable/fireman_icon"
-            android:layout_marginRight="16dp"
-            android:clickable="true"/>
+            app:srcCompat="@drawable/worker" />
 
         <ImageView
-            android:id="@+id/prent5"
-            android:layout_width="100dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toStartOf="@+id/prent6"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/prent1"
-            app:layout_constraintTop_toBottomOf="@+id/prent3"
-            app:srcCompat="@drawable/cook"
-            android:clickable="true"/>
+            android:id="@+id/btnGoNextStep5"
+            android:layout_width="41dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/arrow_right"
+            app:layout_constraintBottom_toBottomOf="@+id/textView8"
+            app:layout_constraintEnd_toEndOf="@+id/textView8"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/prent6"
-            android:layout_width="100dp"
-            android:layout_height="120dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/prent4"
-            app:srcCompat="@drawable/worker"
-            android:clickable="true"/>
+            android:id="@+id/btnGoPreviousStep8"
+            android:layout_width="41dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/arrow_left"
+            app:layout_constraintBottom_toBottomOf="@+id/textView8"
+            app:layout_constraintStart_toStartOf="@+id/textView8"
+            app:layout_constraintTop_toTopOf="@+id/textView8" />
 
     </android.support.constraint.ConstraintLayout>
 

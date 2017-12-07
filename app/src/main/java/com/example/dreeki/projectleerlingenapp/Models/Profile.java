@@ -1,9 +1,6 @@
 package com.example.dreeki.projectleerlingenapp.Models;
 
-import com.example.dreeki.projectleerlingenapp.Interfaces.LockType;
-
-import java.util.ArrayList;
-import java.util.List;
+import io.objectbox.annotation.Entity;
 
 /**
  * Created by dreeki on 26/10/17.
@@ -11,83 +8,56 @@ import java.util.List;
 
 public class Profile {
     private String name;
-    private String street;
-    //number slaat op huisnummer
-    private int number;
-    private String city;
-    private int postalCode;
-    private List<Fingerprint> fingerprints;
-    private Lock lock;
+    private Location home;
+    private String password;
     private PersonalPicture personalPicture;
+    private String email;
 
-    public Profile(Lock lock, PersonalPicture personalPicture, String name, String street, int number, String city, int postalCode){
-        this.lock = lock;
+    public Profile(String password, PersonalPicture personalPicture, String name, Location home, String email){
+        this.password = password;
         this.personalPicture = personalPicture;
-        fingerprints = new ArrayList<>();
         this.name = name;
-        this.street = street;
-        this.number = number;
-        this.city = city;
-        this.postalCode = postalCode;
+        this.home = home;
+        this.email = email;
     }
 
     public void schakelLockUit(){
-        lock = null;
+        password = null;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getNumber() {
-        return number;
-    }
-
-    public List<Fingerprint> getFingerprints() {
-        return fingerprints;
-    }
-
-    public Lock getLock() {
-        return lock;
-    }
-
     public PersonalPicture getPersonalPicture() {
         return personalPicture;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public int getPostalCode() {
-        return postalCode;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public Location getHome() {
+        return home;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
+    public void setHome(Location home) {
+        this.home = home;
     }
 
-    public void setPostalCode(int postalCode) {
-        this.postalCode = postalCode;
+    public String getPassword() {
+        return password;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public void setLock(Lock lock) {
-        this.lock = lock;
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

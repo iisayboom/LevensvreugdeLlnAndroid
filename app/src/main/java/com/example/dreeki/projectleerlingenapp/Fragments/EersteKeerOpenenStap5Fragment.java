@@ -1,21 +1,15 @@
 package com.example.dreeki.projectleerlingenapp.Fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.dreeki.projectleerlingenapp.Interfaces.EersteKeerOpenenInterface;
-import com.example.dreeki.projectleerlingenapp.Models.Camera;
-import com.example.dreeki.projectleerlingenapp.Models.GPS;
-import com.example.dreeki.projectleerlingenapp.Models.LijnApp;
 import com.example.dreeki.projectleerlingenapp.R;
 
 public class EersteKeerOpenenStap5Fragment extends Fragment implements View.OnClickListener{
@@ -43,16 +37,6 @@ public class EersteKeerOpenenStap5Fragment extends Fragment implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnGoNextStep5:
-                ((EersteKeerOpenenInterface)getActivity()).getToolList().clear();
-                if(((Switch)getView().findViewById(R.id.switchLijn)).isChecked()){
-                    ((EersteKeerOpenenInterface)getActivity()).getToolList().add(new LijnApp());
-                }
-                if(((Switch)getView().findViewById(R.id.switchCamera)).isChecked()){
-                    ((EersteKeerOpenenInterface)getActivity()).getToolList().add(new Camera());
-                }
-                if(((Switch)getView().findViewById(R.id.switchGps)).isChecked()){
-                    ((EersteKeerOpenenInterface)getActivity()).getToolList().add(new GPS());
-                }
                 ((EersteKeerOpenenInterface) getActivity()).goToFinalStep();
                 break;
             case R.id.btnGoPreviousStep5:

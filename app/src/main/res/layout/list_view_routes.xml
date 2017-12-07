@@ -1,0 +1,38 @@
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="150dp" android:layout_width="match_parent" android:orientation="horizontal" android:paddingBottom="10dp"
+    android:paddingTop="10dp" xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/linearLayout">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgPrentje"
+            android:layout_width="150dp"
+            android:layout_height="0dp"
+            android:paddingLeft="10dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtTitel"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/glaresome_regular"
+            android:paddingLeft="15dp"
+            android:text="TextView"
+            android:background="@color/anderGroen"
+            android:gravity="center_vertical|left"
+            android:textColor="@color/white"
+            android:textSize="36dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imgPrentje"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>

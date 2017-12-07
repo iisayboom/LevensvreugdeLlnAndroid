@@ -1,0 +1,72 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "2:2564810724414012570",
+      "lastPropertyId": "8:7940045249586337078",
+      "name": "Location",
+      "properties": [
+        {
+          "id": "1:1645459380256989877",
+          "name": "image"
+        },
+        {
+          "id": "2:4935763763341000593",
+          "name": "street"
+        },
+        {
+          "id": "3:3206522919130047647",
+          "name": "city"
+        },
+        {
+          "id": "4:7772633687202336890",
+          "name": "number"
+        },
+        {
+          "id": "5:8724273837885335097",
+          "name": "postalCode"
+        },
+        {
+          "id": "6:5732132785406416279",
+          "name": "title"
+        },
+        {
+          "id": "7:2911762263833025868",
+          "name": "id"
+        },
+        {
+          "id": "8:7940045249586337078",
+          "name": "aanwijzing"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:3402094877010684916",
+      "lastPropertyId": "1:7847999660629093433",
+      "name": "PersonalPicture",
+      "properties": [
+        {
+          "id": "1:7847999660629093433",
+          "name": "pictureLinkId"
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "3:3402094877010684916",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 4,
+  "modelVersionParserMinimum": 4,
+  "retiredEntityUids": [
+    8662385994627197704
+  ],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}

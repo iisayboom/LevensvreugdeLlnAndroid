@@ -9,10 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dreeki.projectleerlingenapp.Interfaces.EersteKeerOpenenInterface;
+import com.example.dreeki.projectleerlingenapp.Models.Mentor;
 import com.example.dreeki.projectleerlingenapp.R;
+
+import java.util.List;
 
 public class EersteKeerOpenenStap4Fragment extends Fragment implements View.OnClickListener{
     @Override
@@ -21,8 +25,8 @@ public class EersteKeerOpenenStap4Fragment extends Fragment implements View.OnCl
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_eerste_keer_openen_stap4, container, false);
 
-        Button b1 = v.findViewById(R.id.btnGoNextStep4);
-        Button b2 = v.findViewById(R.id.btnGoPreviousStep4);
+        ImageView b1 = v.findViewById(R.id.btnGoNextStep4);
+        ImageView b2 = v.findViewById(R.id.btnGoPreviousStep4);
 
         b1.setOnClickListener(this);
         b2.setOnClickListener(this);
@@ -31,22 +35,22 @@ public class EersteKeerOpenenStap4Fragment extends Fragment implements View.OnCl
 
         tv.setText(tv.getText().toString().replace("{persoon}", ((EersteKeerOpenenInterface)getActivity()).getName()));
 
+        if (!(((EersteKeerOpenenInterface) getActivity()).getMentors().size() <= 0)) {
+            String naam = ((EersteKeerOpenenInterface) getActivity()).getMentors().get(0).getName();
+            if(naam != null){
+                ((EditText)v.findViewById(R.id.invoerNaamBegeleider)).setText(naam);
+            }
 
-        String naam = ((EersteKeerOpenenInterface) getActivity()).getMentor().getName();
-        if(naam != null){
-            ((EditText)v.findViewById(R.id.invoerNaamBegeleider)).setText(naam);
+            String telefoonNr = ((EersteKeerOpenenInterface) getActivity()).getMentors().get(0).getPhoneNumber();
+            if(telefoonNr != null){
+                ((EditText)v.findViewById(R.id.invoerTelefoonBegeleider)).setText(telefoonNr);
+            }
+
+            String email = ((EersteKeerOpenenInterface) getActivity()).getMentors().get(0).getEmail();
+            if(email != null){
+                ((EditText)v.findViewById(R.id.invoerEmailBegeleider)).setText(email);
+            }
         }
-
-        String telefoonNr = ((EersteKeerOpenenInterface) getActivity()).getMentor().getPhoneNumber();
-        if(telefoonNr != null){
-            ((EditText)v.findViewById(R.id.invoerTelefoonBegeleider)).setText(telefoonNr);
-        }
-
-        String email = ((EersteKeerOpenenInterface) getActivity()).getMentor().getEmail();
-        if(email != null){
-            ((EditText)v.findViewById(R.id.invoerEmailBegeleider)).setText(email);
-        }
-
 
         return v;
     }
@@ -56,11 +60,12 @@ public class EersteKeerOpenenStap4Fragment extends Fragment implements View.OnCl
         switch (v.getId()){
             case R.id.btnGoNextStep4:
                 if(controleerVelden()){
-                    ((EersteKeerOpenenInterface) getActivity()).getMentor().setName(((EditText)getView().findViewById(R.id.invoerNaamBegeleider)).getText().toString().trim());
-                    ((EersteKeerOpenenInterface) getActivity()).getMentor().setPhoneNumber(((EditText)getView().findViewById(R.id.invoerTelefoonBegeleider)).getText().toString().trim());
-                    ((EersteKeerOpenenInterface) getActivity()).getMentor().setEmail(((EditText)getView().findViewById(R.id.invoerEmailBegeleider)).getText().toString().trim());
+                    String name = ((EditText)getView().findViewById(R.id.invoerNaamBegeleider)).getText().toString().trim();
+                    String number = ((EditText)getView().findViewById(R.id.invoerTelefoonBegeleider)).getText().toString().trim();
+                    String email = ((EditText)getView().findViewById(R.id.invoerEmailBegeleider)).getText().toString().trim();
+                    ((EersteKeerOpenenInterface) getActivity()).getMentors().add(new Mentor(name, number, email));
 
-                    ((EersteKeerOpenenInterface) getActivity()).goToStep5();
+                    ((EersteKeerOpenenInterface) getActivity()).goToLoginScreen();
                 }
                 break;
             case R.id.btnGoPreviousStep4:

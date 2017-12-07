@@ -14,6 +14,7 @@ import com.example.dreeki.projectleerlingenapp.Activities.RouteActivity;
 import com.example.dreeki.projectleerlingenapp.Activities.SettingsActivity;
 import com.example.dreeki.projectleerlingenapp.Interfaces.EersteKeerOpenenInterface;
 import com.example.dreeki.projectleerlingenapp.Interfaces.RouteInterface;
+import com.example.dreeki.projectleerlingenapp.Models.User;
 import com.example.dreeki.projectleerlingenapp.R;
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
@@ -24,18 +25,21 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_login, container, false);
 
-        Button b1 = v.findViewById(R.id.btnGoToRoutes);
-        ImageView i1 = v.findViewById(R.id.btnSettings);
+        final User user = User.get();
+
+        ImageView iv = v.findViewById(R.id.btnSettings);
+        iv.setOnClickListener(this);
+
+        ImageView b1 = v.findViewById(R.id.btnGoToRoutes);
 
         b1.setOnClickListener(this);
-        i1.setOnClickListener(this);
 
         TextView tv = v.findViewById(R.id.tvIcoonPersoon);
 
-        tv.setText(tv.getText().toString().replace("{persoon}", ((EersteKeerOpenenInterface)getActivity()).getName()));
+        tv.setText(tv.getText().toString().replace("{persoon}", user.getProfile().getName()));
 
         ImageView imageView = v.findViewById(R.id.imagePrent);
-        imageView.setImageResource(((EersteKeerOpenenInterface)getActivity()).getUser().getProfile().getPersonalPicture().getPictureLinkId());
+        imageView.setImageResource(user.getProfile().getPersonalPicture().getPictureLinkId());
 
         return v;
     }
@@ -44,12 +48,13 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnGoToRoutes:
-                Intent intent = new Intent(this.getActivity(), RouteActivity.class);
-                startActivity(intent);
+                Intent intentRoutes = new Intent(this.getActivity(), RouteActivity.class);
+                startActivity(intentRoutes);
                 break;
             case R.id.btnSettings:
-                Intent intent2 = new Intent(this.getActivity(), SettingsActivity.class);
-                startActivity(intent2);
+                Intent intentSettings = new Intent(this.getActivity(), SettingsActivity.class);
+                startActivity(intentSettings);
+                //((EersteKeerOpenenInterface)getActivity()).goToProblems();
                 break;
         }
     }

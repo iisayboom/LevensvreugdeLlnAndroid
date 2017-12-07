@@ -5,4 +5,19 @@ package com.example.dreeki.projectleerlingenapp.Models;
  */
 
 public class Problem {
+    private String probleem;
+    private int image;
+
+    public Problem(String probleem, int image) {
+        this.probleem = probleem;
+        this.image = image;
+    }
+
+    public String getProbleem() {
+        return probleem;
+    }
+
+    public void setProbleem(String probleem) {
+        this.probleem = probleem;
+    }
 }

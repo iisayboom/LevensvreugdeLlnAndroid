@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dreeki.projectleerlingenapp.Interfaces.EersteKeerOpenenInterface;
@@ -21,8 +22,8 @@ public class EersteKeerOpenenStap3Fragment extends Fragment implements View.OnCl
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_eerste_keer_openen_stap3, container, false);
 
-        Button b1 = v.findViewById(R.id.btnGoNextStep3);
-        Button b2 = v.findViewById(R.id.btnGoPreviousStep3);
+        ImageView b1 = v.findViewById(R.id.btnGoNextStep3);
+        ImageView b2 = v.findViewById(R.id.btnGoPreviousStep3);
 
         b1.setOnClickListener(this);
         b2.setOnClickListener(this);
@@ -36,8 +37,8 @@ public class EersteKeerOpenenStap3Fragment extends Fragment implements View.OnCl
             ((EditText)v.findViewById(R.id.invoerStraat)).setText(straat);
         }
 
-        int nr = ((EersteKeerOpenenInterface) getActivity()).getNumber();
-        if(nr != 0){
+        String nr = ((EersteKeerOpenenInterface) getActivity()).getNumber();
+        if(nr != null){
             ((EditText)v.findViewById(R.id.invoerNr)).setText(nr + "");
         }
 
@@ -60,7 +61,7 @@ public class EersteKeerOpenenStap3Fragment extends Fragment implements View.OnCl
             case R.id.btnGoNextStep3:
                 if(controleerVelden()){
                     ((EersteKeerOpenenInterface) getActivity()).setStreet(((EditText)getView().findViewById(R.id.invoerStraat)).getText().toString().trim());
-                    ((EersteKeerOpenenInterface) getActivity()).setNumber(Integer.parseInt(((EditText)getView().findViewById(R.id.invoerNr)).getText().toString().trim()));
+                    ((EersteKeerOpenenInterface) getActivity()).setNumber(((EditText)getView().findViewById(R.id.invoerNr)).getText().toString().trim());
                     ((EersteKeerOpenenInterface) getActivity()).setCity(((EditText)getView().findViewById(R.id.invoerGemeente)).getText().toString().trim());
                     ((EersteKeerOpenenInterface) getActivity()).setPostalCode(Integer.parseInt(((EditText)getView().findViewById(R.id.invoerPostcode)).getText().toString().trim()));
 

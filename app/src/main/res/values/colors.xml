@@ -7,4 +7,8 @@
     <color name="gray">#b3b3b3</color>
     <color name="green">#7ed321</color>
     <color name="white">#ffffff</color>
+    <color name="topBarGreen">#417505</color>
+    <color name="backgroundGreen">#EFF1ED</color>
+    <color name="anderGroen">#98C46B</color>
+    <color name="zwart">#000000</color>
 </resources>

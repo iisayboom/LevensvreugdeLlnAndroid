@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.dreeki.projectleerlingenapp.Interfaces.EersteKeerOpenenInterface;
 import com.example.dreeki.projectleerlingenapp.R;
@@ -26,7 +27,7 @@ public class EersteKeerOpenenStap1Fragment extends Fragment implements View.OnCl
             ((EditText)v.findViewById(R.id.naamInvullenVeld)).setText(naam);
         }
 
-        Button b = v.findViewById(R.id.btnGoNextStep1);
+        ImageView b = v.findViewById(R.id.btnGoNextStep1);
         b.setOnClickListener(this);
 
         return v;
@@ -39,7 +40,7 @@ public class EersteKeerOpenenStap1Fragment extends Fragment implements View.OnCl
                 String naam = ((EditText)v.getRootView().findViewById(R.id.naamInvullenVeld)).getText().toString().trim();
                 if(naam != null && !naam.equals("")) {
                     ((EersteKeerOpenenInterface) getActivity()).setName(naam);
-                    ((EersteKeerOpenenInterface) getActivity()).goToStep2();
+                    ((EersteKeerOpenenInterface) getActivity()).goToStep7();
                 }
                 break;
         }

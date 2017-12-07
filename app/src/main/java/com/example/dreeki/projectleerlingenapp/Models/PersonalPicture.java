@@ -1,5 +1,7 @@
 package com.example.dreeki.projectleerlingenapp.Models;
 
+import io.objectbox.annotation.Entity;
+
 /**
  * Created by dreeki on 26/10/17.
  */
