@@ -33,6 +33,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         b.setOnClickListener(this);
 
         return v;
+
         
     }
 
