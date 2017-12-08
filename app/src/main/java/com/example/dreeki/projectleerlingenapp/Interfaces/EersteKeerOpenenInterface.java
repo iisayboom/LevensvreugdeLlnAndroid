@@ -42,4 +42,5 @@ public interface EersteKeerOpenenInterface {
     void setEmail(String email);
     void setPassword(String password);
     void goToProblems();
+    void goToAlreadyRegistered();
 }

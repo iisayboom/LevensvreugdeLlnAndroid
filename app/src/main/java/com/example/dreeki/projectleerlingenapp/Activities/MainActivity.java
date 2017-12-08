@@ -167,6 +167,16 @@ public class MainActivity extends AppCompatActivity implements EersteKeerOpenenI
     }
 
     @Override
+    public void goToAlreadyRegistered() {
+        EersteKeerOpenenLoginFragment f = new EersteKeerOpenenLoginFragment();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_container, f);
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
+    @Override
     public void goToLoginScreen() {
         Location homeLocation = new Location(R.drawable.voet, street, city, number, postalCode, "Home", "1", "Nog een aanwijzing");
         Profile profile = new Profile(password, picture, name, homeLocation, email);

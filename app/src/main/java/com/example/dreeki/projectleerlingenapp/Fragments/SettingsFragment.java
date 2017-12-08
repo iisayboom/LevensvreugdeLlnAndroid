@@ -34,7 +34,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
         return v;
 
-        
+
     }
 
     @Override

@@ -47,7 +47,6 @@ public class User {
         return user;
     }
 
-
     public List<Route> getRoutes() {
         return routes;
     }
