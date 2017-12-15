@@ -1,0 +1,103 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/imgBgGeluid"
+        android:layout_width="0dp"
+        android:layout_height="290dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintHorizontal_bias="0.6"
+        card_view:layout_constraintLeft_toLeftOf="parent"
+        card_view:layout_constraintRight_toRightOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+    <ImageView
+        android:id="@+id/imgGeluid"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/geluid"
+        card_view:layout_constraintLeft_toLeftOf="parent"
+        card_view:layout_constraintRight_toRightOf="parent"
+        card_view:layout_constraintTop_toTopOf="@+id/imgBgGeluid" />
+
+    <TextView
+        android:id="@+id/txtGeluid"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="Geluid"
+        android:textColor="@color/white"
+        android:textSize="36sp"
+        android:paddingLeft="15dp"
+        card_view:layout_constraintBottom_toBottomOf="@+id/imgBgGeluid"
+        card_view:layout_constraintEnd_toEndOf="@+id/imgBgGeluid"
+        card_view:layout_constraintStart_toStartOf="@+id/imgBgGeluid" />
+
+    <ImageView
+        android:id="@+id/imgBgTekst"
+        android:layout_width="0dp"
+        android:layout_height="290dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toBottomOf="@+id/txtGeluid" />
+
+    <ImageView
+        android:id="@+id/imgTekst"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/bericht"
+        card_view:layout_constraintLeft_toLeftOf="parent"
+        card_view:layout_constraintRight_toRightOf="parent"
+        card_view:layout_constraintTop_toTopOf="@+id/imgBgTekst" />
+
+    <TextView
+        android:id="@+id/txtTekst"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="Tekst"
+        android:paddingLeft="15dp"
+        android:textColor="@color/white"
+        android:textSize="36sp"
+        card_view:layout_constraintBottom_toBottomOf="@+id/imgBgTekst"
+        card_view:layout_constraintEnd_toEndOf="@+id/imgBgTekst"
+        card_view:layout_constraintStart_toStartOf="@+id/imgBgTekst" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="0dp"
+        android:layout_height="71dp"
+        android:paddingTop="10dp"
+        android:background="@color/topBarGreen"
+        android:paddingLeft="20dp"
+        android:text="Hoe wil je het tonen?"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="36sp"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btnTerug"
+        android:layout_width="41dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/arrow_left"
+        card_view:layout_constraintBottom_toBottomOf="@+id/textView18"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>

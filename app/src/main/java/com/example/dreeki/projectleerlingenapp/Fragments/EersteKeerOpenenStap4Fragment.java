@@ -19,6 +19,8 @@ import com.example.dreeki.projectleerlingenapp.R;
 import java.util.List;
 
 public class EersteKeerOpenenStap4Fragment extends Fragment implements View.OnClickListener{
+    private TextView foutBoodschap;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class EersteKeerOpenenStap4Fragment extends Fragment implements View.OnCl
 
         ImageView b1 = v.findViewById(R.id.btnGoNextStep4);
         ImageView b2 = v.findViewById(R.id.btnGoPreviousStep4);
+        foutBoodschap = v.findViewById(R.id.txtFout);
 
         b1.setOnClickListener(this);
         b2.setOnClickListener(this);
@@ -35,22 +38,12 @@ public class EersteKeerOpenenStap4Fragment extends Fragment implements View.OnCl
 
         tv.setText(tv.getText().toString().replace("{persoon}", ((EersteKeerOpenenInterface)getActivity()).getName()));
 
-        if (!(((EersteKeerOpenenInterface) getActivity()).getMentors().size() <= 0)) {
-            String naam = ((EersteKeerOpenenInterface) getActivity()).getMentors().get(0).getName();
-            if(naam != null){
-                ((EditText)v.findViewById(R.id.invoerNaamBegeleider)).setText(naam);
-            }
-
-            String telefoonNr = ((EersteKeerOpenenInterface) getActivity()).getMentors().get(0).getPhoneNumber();
-            if(telefoonNr != null){
-                ((EditText)v.findViewById(R.id.invoerTelefoonBegeleider)).setText(telefoonNr);
-            }
-
-            String email = ((EersteKeerOpenenInterface) getActivity()).getMentors().get(0).getEmail();
-            if(email != null){
-                ((EditText)v.findViewById(R.id.invoerEmailBegeleider)).setText(email);
-            }
+        if(((EersteKeerOpenenInterface)getActivity()).getMentorEmail() != null && ((EersteKeerOpenenInterface)getActivity()).getMentorEmail().trim() != ""){
+            EditText et = v.findViewById(R.id.invoerEmailBegeleider);
+            et.setText(((EersteKeerOpenenInterface)getActivity()).getMentorEmail());
         }
+
+
 
         return v;
     }
@@ -60,12 +53,10 @@ public class EersteKeerOpenenStap4Fragment extends Fragment implements View.OnCl
         switch (v.getId()){
             case R.id.btnGoNextStep4:
                 if(controleerVelden()){
-                    String name = ((EditText)getView().findViewById(R.id.invoerNaamBegeleider)).getText().toString().trim();
-                    String number = ((EditText)getView().findViewById(R.id.invoerTelefoonBegeleider)).getText().toString().trim();
                     String email = ((EditText)getView().findViewById(R.id.invoerEmailBegeleider)).getText().toString().trim();
-                    ((EersteKeerOpenenInterface) getActivity()).getMentors().add(new Mentor(name, number, email));
-
-                    ((EersteKeerOpenenInterface) getActivity()).goToLoginScreen();
+                    ((EersteKeerOpenenInterface)getActivity()).setMentorEmail(email);
+                    ((EersteKeerOpenenInterface)getActivity()).geefEersteKeerOpenenStapFragmentAanApp(this);
+                    ((EersteKeerOpenenInterface)getActivity()).goToLoginScreen();
                 }
                 break;
             case R.id.btnGoPreviousStep4:
@@ -77,19 +68,7 @@ public class EersteKeerOpenenStap4Fragment extends Fragment implements View.OnCl
     private boolean controleerVelden(){
         boolean allesIngevuld = true;
 
-        EditText e1 = getView().findViewById(R.id.invoerNaamBegeleider);
-        EditText e2 = getView().findViewById(R.id.invoerTelefoonBegeleider);
         EditText e3 = getView().findViewById(R.id.invoerEmailBegeleider);
-
-        if(e1.getText().toString() == null || e1.getText().toString().trim() == ""){
-            allesIngevuld = false;
-            //error geven voor dit veld
-        }
-
-        if(e2.getText().toString() == null || e2.getText().toString().trim() == ""){
-            allesIngevuld = false;
-            //error geven voor dit veld
-        }
 
         if(e3.getText().toString() == null || e3.getText().toString().trim() == ""){
             allesIngevuld = false;
@@ -100,5 +79,9 @@ public class EersteKeerOpenenStap4Fragment extends Fragment implements View.OnCl
         }
 
         return  allesIngevuld;
+    }
+
+    public void setFoutBoodschap(String foutBoodschap) {
+        this.foutBoodschap.setText(foutBoodschap);
     }
 }

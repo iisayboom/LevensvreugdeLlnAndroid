@@ -38,7 +38,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/btnNood"
             android:layout_width="65dp"
             android:layout_height="60dp"
             android:layout_marginBottom="28dp"
@@ -67,7 +67,7 @@
             android:src="@drawable/routes"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnSettings"
-            app:layout_constraintStart_toEndOf="@+id/imageView2" />
+            app:layout_constraintStart_toEndOf="@+id/btnNood" />
 
     </android.support.constraint.ConstraintLayout>
 

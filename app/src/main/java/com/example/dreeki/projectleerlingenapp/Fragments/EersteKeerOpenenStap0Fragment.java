@@ -22,6 +22,9 @@ public class EersteKeerOpenenStap0Fragment extends Fragment implements View.OnCl
         ImageView iv = v.findViewById(R.id.btnGoNextStep0);
         iv.setOnClickListener(this);
 
+        Button b = v.findViewById(R.id.btnRegistered);
+        b.setOnClickListener(this);
+
 
         return v;
     }
@@ -29,9 +32,15 @@ public class EersteKeerOpenenStap0Fragment extends Fragment implements View.OnCl
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+
             case R.id.btnGoNextStep0:
                 ((EersteKeerOpenenInterface)getActivity()).goToStep1();
                 break;
+
+            case R.id.btnRegistered:
+                ((EersteKeerOpenenInterface)getActivity()).goToAlreadyRegistered();
+                break;
+
         }
     }
 }

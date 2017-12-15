@@ -1,8 +1,9 @@
 package com.example.dreeki.projectleerlingenapp.Utils;
 
-import com.example.dreeki.projectleerlingenapp.Models.Location;
+import android.util.Log;
+
+import com.example.dreeki.projectleerlingenapp.Models.Locatie;
 import com.example.dreeki.projectleerlingenapp.Models.Mentor;
-import com.example.dreeki.projectleerlingenapp.Models.PersonalPicture;
 import com.example.dreeki.projectleerlingenapp.Models.Profile;
 import com.example.dreeki.projectleerlingenapp.Models.Route;
 import com.example.dreeki.projectleerlingenapp.Models.User;
@@ -23,89 +24,119 @@ import java.util.List;
  */
 
 public class UserDeserialiser implements JsonDeserializer<User> {
+
     @Override
     public User deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+
         final JsonObject jsonUser = json.getAsJsonObject();
-        final String userId = jsonUser.get("_id").getAsString();
         final String userName = jsonUser.get("name").getAsString();
-        final int userImage = R.drawable.construction_icon;
+
+        final int userImage = R.drawable.worker;
         final String userEmail = jsonUser.get("email").getAsString();
-        final String userPassword = jsonUser.get("password").getAsString();
+
+        final JsonObject jsonUserHoofdBegeleider = jsonUser.getAsJsonObject("hoofdMentor");
+        final String jsonUserHoofdBegeleiderName = jsonUserHoofdBegeleider.get("username").getAsString();
+        final String jsonUserHoofdBegeleiderPhone = jsonUserHoofdBegeleider.get("phone").getAsString();
+        final String jsonUserHoofdBegeleiderEmail = jsonUserHoofdBegeleider.get("email").getAsString();
+
+        final Mentor hoofdbegeleider = new Mentor(0,jsonUserHoofdBegeleiderName,jsonUserHoofdBegeleiderPhone,jsonUserHoofdBegeleiderEmail);
 
         final JsonObject jsonUserAdress = jsonUser.getAsJsonObject("adress");
-        final String adressId = jsonUserAdress.get("_id").getAsString();
+        //final String adressId = jsonUserAdress.get("_id").getAsString();
 
         //final int adressImage = jsonUserAdress.get("_id").getAsInt();
         final int adressImage = R.drawable.huis;
-        final String adressStreet = jsonUserAdress.get("_id").getAsString();
+        final String adressStreet = jsonUserAdress.get("street").getAsString();
         final int adressPos = jsonUserAdress.get("postalCode").getAsInt();
-        final String adressCity = jsonUserAdress.get("_id").getAsString();
-        final String adressNumber = jsonUserAdress.get("_id").getAsString();
-        final String adressTitle = jsonUserAdress.get("_id").getAsString();
-        final String adressClue = jsonUserAdress.get("clue").getAsString();
+        final String adressCity = jsonUserAdress.get("city").getAsString();
+        final String adressNumber = jsonUserAdress.get("number").getAsString();
+        final String adressTitle = jsonUserAdress.get("title").getAsString();
 
-        final Location homeAdress = new Location(adressImage, adressStreet,adressCity,adressNumber,adressPos,adressTitle, adressId,adressClue);
+        final Locatie homeAdress = new Locatie(0, adressImage, adressStreet,adressCity,adressNumber,adressPos,adressTitle);
+
         final List<Route> userRoutes = new ArrayList<>();
         final JsonArray jsonRoutes = jsonUser.getAsJsonArray("routes");
         for (JsonElement r:jsonRoutes) {
             final JsonObject rObj = r.getAsJsonObject();
-            final String routeId = rObj.get("_id").getAsString();
+            //final String routeId = rObj.get("id").getAsString();
             final JsonObject begin = rObj.getAsJsonObject("begin");
 
-            final String adressIdBegin = begin.get("_id").getAsString();
+            //final String adressIdBegin = begin.get("begin").getAsString();
 
             //final int adressImageBegin = begin.get("_id").getAsInt();
             final int adressImageBegin = R.drawable.huis;
-            final String adressStreetBegin = begin.get("_id").getAsString();
+            final String adressStreetBegin = begin.get("street").getAsString();
             final int adressPosBegin = begin.get("postalCode").getAsInt();
-            final String adressCityBegin = begin.get("_id").getAsString();
-            final String adressNumberBegin = begin.get("_id").getAsString();
-            final String adressTitleBegin = begin.get("_id").getAsString();
-            final String adressClueBegin = begin.get("clue").getAsString();
-
-            final Location beginLocation = new Location(adressImageBegin, adressStreetBegin, adressCityBegin, adressNumberBegin, adressPosBegin, adressTitleBegin, adressIdBegin, adressClueBegin);
+            final String adressCityBegin = begin.get("city").getAsString();
+            final String adressNumberBegin = begin.get("number").getAsString();
+            final String adressTitleBegin = begin.get("title").getAsString();
+            //final String adressVerplaatsManierBegin = checkpoint.get("verplaatsWijze").getAsString();
+            final String adressVerplaatsManierBegin = "Te voet";
+            final Locatie beginLocatie = new Locatie(0,adressImageBegin, adressStreetBegin, adressCityBegin, adressNumberBegin, adressPosBegin, adressTitleBegin, adressVerplaatsManierBegin);
 
             final JsonObject end = rObj.getAsJsonObject("end");
-            final String adressIdEnd = end.get("_id").getAsString();
+            //final String adressIdEnd = end.get("id").getAsString();
 
             //final int adressImageEnd = end.get("_id").getAsInt();
-            final int adressImageEnd = R.drawable.huis;
-            final String adressStreetEnd = end.get("_id").getAsString();
+            final int adressImageEnd = R.drawable.bus;
+            final String adressStreetEnd = end.get("street").getAsString();
             final int adressPosEnd = end.get("postalCode").getAsInt();
-            final String adressCityEnd = end.get("_id").getAsString();
-            final String adressNumberEnd = end.get("_id").getAsString();
-            final String adressTitleEnd = end.get("_id").getAsString();
-            final String adressClueEnd = end.get("clue").getAsString();
+            final String adressCityEnd = end.get("city").getAsString();
+            final String adressNumberEnd = end.get("number").getAsString();
+            final String adressTitleEnd = end.get("title").getAsString();
+            final String adressClueEnd = end.get("aanwijzing").getAsString();
 
-            final Location endLocation = new Location(adressImageEnd, adressStreetEnd, adressCityEnd, adressNumberEnd, adressPosEnd, adressTitleEnd, adressIdEnd, adressClueEnd);
+            final Locatie endLocatie = new Locatie(0,adressImageEnd, adressStreetEnd, adressCityEnd, adressNumberEnd, adressPosEnd, adressTitleEnd, adressClueEnd, "Te voet");
 
             final JsonArray jsonCheckpoints = rObj.getAsJsonArray("checkpoints");
 
-            final List<Location> routeCheckpoints = new ArrayList<>();
+            final List<Locatie> routeCheckpoints = new ArrayList<>();
 
             for (JsonElement e : jsonCheckpoints) {
                 JsonObject checkpoint = e.getAsJsonObject();
 
-                final String adressIdcheckpoint = checkpoint.get("_id").getAsString();
+                //final String adressIdcheckpoint = checkpoint.get("id").getAsString();
 
                 //final int adressImagecheckpoint = checkpoint.get("_id").getAsInt();
                 final int adressImagecheckpoint = R.drawable.huis;
-                final String adressStreetcheckpoint = checkpoint.get("_id").getAsString();
+                final String adressStreetcheckpoint = checkpoint.get("street").getAsString();
                 final int adressPoscheckpoint = checkpoint.get("postalCode").getAsInt();
-                final String adressCitycheckpoint = checkpoint.get("_id").getAsString();
-                final String adressNumbercheckpoint = checkpoint.get("_id").getAsString();
-                final String adressTitlecheckpoint = checkpoint.get("_id").getAsString();
-                final String adressCluecheckpoint = checkpoint.get("clue").getAsString();
+                final String adressCitycheckpoint = checkpoint.get("city").getAsString();
+                final String adressNumbercheckpoint = checkpoint.get("number").getAsString();
+                final String adressTitlecheckpoint = checkpoint.get("title").getAsString();
+                final String adressCluecheckpoint = checkpoint.get("aanwijzing").getAsString();
+                //final String adressVerplaatsManierCheckpoint = checkpoint.get("verplaatsWijze").getAsString();
+                final String adressVerplaatsManierCheckpoint = "Te voet";
+                routeCheckpoints.add(new Locatie(0,adressImagecheckpoint, adressStreetcheckpoint, adressCitycheckpoint, adressNumbercheckpoint, adressPoscheckpoint, adressTitlecheckpoint, adressCluecheckpoint, adressVerplaatsManierCheckpoint));
 
-                routeCheckpoints.add(new Location(adressImagecheckpoint, adressStreetcheckpoint, adressCitycheckpoint, adressNumbercheckpoint, adressPoscheckpoint, adressTitlecheckpoint, adressIdcheckpoint, adressCluecheckpoint));
+                                                /*
+
+                                                    public Locatie(long id, int picture, String street, String city, String number, int postalCode, String title){
+                                                    this(id,picture,street,city,number,postalCode,title, "","");
+                                                }
+
+                                                    public Locatie(long id, int picture, String street, String city, String number, int postalCode, String title, String aanwijzing, String state){
+                                                 */
+
 
             }
-            userRoutes.add(new Route(beginLocation, endLocation, routeCheckpoints, routeId));
+            Route route = new Route(0);
+            Log.i("fff", beginLocatie.toString());
+            route.begin.setTarget(beginLocatie);
+            route.end.setTarget(endLocatie);
+            route.checkpoints.addAll(routeCheckpoints);
+            userRoutes.add(route);
         }
 
-        final Profile profile = new Profile(userPassword,new PersonalPicture(userImage), userName, homeAdress, userEmail);
+        final Profile profile = new Profile(0, userImage, userName, userEmail);
+        profile.home.setTarget(homeAdress);
 
-        //return new User(null, profile, userRoutes, true, userId);
-        return null;
+        final User user = new User(0);
+        user.profile.setTarget(profile);
+        user.routes.addAll(userRoutes);
+        user.mentor.setTarget(hoofdbegeleider);
+
+        return user;
     }
+
 }

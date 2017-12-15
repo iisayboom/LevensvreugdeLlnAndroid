@@ -1,5 +1,6 @@
 package com.example.dreeki.projectleerlingenapp.Adapters;
 
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.dreeki.projectleerlingenapp.Models.Problem;
 import com.example.dreeki.projectleerlingenapp.R;
+import com.example.dreeki.projectleerlingenapp.Utils.ColorHandlerForAndroidMaterialDesign;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,24 +21,30 @@ import java.util.List;
 
 public class ProblemAdapter extends BaseAdapter {
     private List<Problem> problems;
+    private ColorHandlerForAndroidMaterialDesign colorHandler;
 
     private static class ProblemViewHolder {
 
         public TextView textView;
         public ImageView myImageView;
+        public CardView card;
 
         public ProblemViewHolder(View itemView) {
             textView = itemView.findViewById(R.id.problemText);
             myImageView = itemView.findViewById(R.id.problemImage);
+            card = itemView.findViewById(R.id.card_view);
         }
     }
 
     public ProblemAdapter() {
         this.problems = new ArrayList<>();
+        colorHandler = new ColorHandlerForAndroidMaterialDesign();
     }
 
     public void setProblems(List<Problem> problems) {
         this.problems = problems;
+        Problem panicProblem = new Problem(0,"Help", R.drawable.phone,"");
+        this.problems.add(panicProblem);
         notifyDataSetChanged();
     }
 
@@ -53,8 +61,19 @@ public class ProblemAdapter extends BaseAdapter {
         }
 
         Problem problem = getItem(position);
-        holder.textView.setText(problem.getProbleem());
-        holder.myImageView.setImageResource(R.drawable.lekkeband);
+
+        if(position == this.problems.size()-1){
+            holder.textView.setText(problem.getProbleem());
+            holder.textView.setBackgroundColor(colorHandler.getPanicColor().getColorDark());
+            holder.myImageView.setImageResource(problem.getImage());
+            holder.card.setCardBackgroundColor(colorHandler.getPanicColor().getColorLight());
+        } else {
+            holder.textView.setText(problem.getProbleem());
+            holder.textView.setBackgroundColor(colorHandler.giveColorForItemOnPosition(position).getColorDark());
+            holder.myImageView.setImageResource(problem.getImage());
+            holder.card.setCardBackgroundColor(colorHandler.giveColorForItemOnPosition(position).getColorLight());
+        }
+
         return convertView;
     }
 
@@ -71,5 +90,9 @@ public class ProblemAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return position;
+    }
+
+    public List<Problem> getProblems() {
+        return problems;
     }
 }

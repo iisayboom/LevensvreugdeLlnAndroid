@@ -2,15 +2,15 @@
     <string name="app_name">ProjectLeerlingenApp</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_eerste_keer_openen">EersteKeerOpenenActivity</string>
     <string name="smaller"><![CDATA[<]]></string>
     <string name="bigger"><![CDATA[>]]></string>
-    <string name="wie_zal_deze_app_gebruiken">Wie zal deze app gebruiken?</string>
-    <string name="subTitelStartSchermStap0">Maak een profiel aan voor de gebruiker zodat hij steeds gepaste inhoud te zien krijgt.</string>
-    <string name="thuis">Thuis</string>
+    <string name="subTitelStartSchermStap0">Maak een profile aan voor de user zodat hij steeds gepaste inhoud te zien krijgt.</string>
     <string name="title_activity_bottom_navigation">bottomNavigation</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="firebase_location">user_locations/</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

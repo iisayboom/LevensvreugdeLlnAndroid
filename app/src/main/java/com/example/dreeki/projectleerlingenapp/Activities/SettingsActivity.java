@@ -4,22 +4,26 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
-import com.example.dreeki.projectleerlingenapp.Fragments.LoginFragment;
-import com.example.dreeki.projectleerlingenapp.Fragments.RouteFragment;
-import com.example.dreeki.projectleerlingenapp.Fragments.SettingsFragment;
+import com.example.dreeki.projectleerlingenapp.App;
+import com.example.dreeki.projectleerlingenapp.Fragments.InstellingenFragment;
 import com.example.dreeki.projectleerlingenapp.Interfaces.SettingsInterface;
+import com.example.dreeki.projectleerlingenapp.Models.User;
 import com.example.dreeki.projectleerlingenapp.R;
 
 public class SettingsActivity extends AppCompatActivity implements SettingsInterface {
 
+    private User user;
+    private App app;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        app = ((App)getApplication());
+        user = app.getUser();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        SettingsFragment f = new SettingsFragment();
+        InstellingenFragment f = new InstellingenFragment();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fragment_container, f);
@@ -28,11 +32,11 @@ public class SettingsActivity extends AppCompatActivity implements SettingsInter
 
     @Override
     public void showLoginScreen() {
-        LoginFragment f = new LoginFragment();
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.fragment_container, f);
-        ft.addToBackStack(null);
-        ft.commit();
+        finish();
+    }
+
+    @Override
+    public User getUser() {
+        return user;
     }
 }

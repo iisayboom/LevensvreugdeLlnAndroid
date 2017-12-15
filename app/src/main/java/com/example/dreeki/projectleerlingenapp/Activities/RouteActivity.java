@@ -1,33 +1,43 @@
 package com.example.dreeki.projectleerlingenapp.Activities;
 
-import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.dreeki.projectleerlingenapp.App;
 import com.example.dreeki.projectleerlingenapp.Fragments.BenodigdheidFragment;
 import com.example.dreeki.projectleerlingenapp.Fragments.CheckpointFragment;
-import com.example.dreeki.projectleerlingenapp.Fragments.LoginFragment;
+import com.example.dreeki.projectleerlingenapp.Fragments.ProbleemManier;
+import com.example.dreeki.projectleerlingenapp.Fragments.ProbleemTekst;
 import com.example.dreeki.projectleerlingenapp.Fragments.ProblemFragment;
 import com.example.dreeki.projectleerlingenapp.Fragments.RouteFragment;
 import com.example.dreeki.projectleerlingenapp.Fragments.RouteGeslaagdFragment;
 import com.example.dreeki.projectleerlingenapp.Fragments.RouteKeuzeFragment;
 import com.example.dreeki.projectleerlingenapp.Fragments.VerplaatsManier;
-import com.example.dreeki.projectleerlingenapp.Interfaces.EersteKeerOpenenInterface;
 import com.example.dreeki.projectleerlingenapp.Interfaces.RouteInterface;
-import com.example.dreeki.projectleerlingenapp.Models.Location;
-import com.example.dreeki.projectleerlingenapp.Models.Route;
 import com.example.dreeki.projectleerlingenapp.Models.User;
+import com.example.dreeki.projectleerlingenapp.Models.Locatie;
+import com.example.dreeki.projectleerlingenapp.Models.Problem;
+import com.example.dreeki.projectleerlingenapp.Models.Route;
 import com.example.dreeki.projectleerlingenapp.R;
+
+import io.objectbox.Box;
 
 public class RouteActivity extends AppCompatActivity implements RouteInterface{
 
     private Route gekozenRoute;
-    private Location checkpoint;
+    private Locatie checkpoint;
+    private User user;
+    private CheckpointFragment checkpointFragment;
+    private App app;
+    private Box<User> userBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        app = ((App)getApplication());
+        user = app.getUser();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route);
 
@@ -68,12 +78,12 @@ public class RouteActivity extends AppCompatActivity implements RouteInterface{
         b.putInt("img", src);
         b.putString("stap", stap);
 
-        CheckpointFragment f = new CheckpointFragment();
-        f.setArguments(b);
+        checkpointFragment = new CheckpointFragment();
+        checkpointFragment.setArguments(b);
 
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.fragment_container, f);
+        ft.replace(R.id.fragment_container, checkpointFragment);
         ft.addToBackStack(null);
         ft.commit();
 
@@ -100,7 +110,7 @@ public class RouteActivity extends AppCompatActivity implements RouteInterface{
     }
 
     @Override
-    public Location getLocation(){
+    public Locatie getLocation(){
         return this.checkpoint;
     }
 
@@ -132,23 +142,23 @@ public class RouteActivity extends AppCompatActivity implements RouteInterface{
     }
 
     @Override
-    public Location getNextLocation() {
+    public Locatie getNextLocation() {
         if (checkpoint == null){
-            if(gekozenRoute.getCheckpoints().size() == 0){
-                checkpoint = gekozenRoute.getEnd();
+            if(gekozenRoute.checkpoints.size() == 0){
+                checkpoint = gekozenRoute.end.getTarget();
             }else {
-                checkpoint = gekozenRoute.getCheckpoints().get(0);
+                checkpoint = gekozenRoute.checkpoints.get(0);
             }
         }else{
-            if(checkpoint == gekozenRoute.getEnd()){
+            if(checkpoint == gekozenRoute.end.getTarget()){
                 checkpoint = null;
             }else{
-                if(checkpoint == gekozenRoute.getCheckpoints().get(gekozenRoute.getCheckpoints().size()-1)){
-                    checkpoint = gekozenRoute.getEnd();
+                if(checkpoint == gekozenRoute.checkpoints.get(gekozenRoute.checkpoints.size()-1)){
+                    checkpoint = gekozenRoute.end.getTarget();
                 }else {
-                    for(int i = 0; i < gekozenRoute.getCheckpoints().size(); i++){
-                        if(checkpoint == gekozenRoute.getCheckpoints().get(i)){
-                            checkpoint = gekozenRoute.getCheckpoints().get(i +1);
+                    for(int i = 0; i < gekozenRoute.checkpoints.size(); i++){
+                        if(checkpoint == gekozenRoute.checkpoints.get(i)){
+                            checkpoint = gekozenRoute.checkpoints.get(i +1);
                             break;
                         }
                     }
@@ -161,12 +171,13 @@ public class RouteActivity extends AppCompatActivity implements RouteInterface{
 
     @Override
     public void goToLoginScreen() {
-        LoginFragment f = new LoginFragment();
+        /*LoginFragment f = new LoginFragment();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fragment_container, f);
         ft.addToBackStack(null);
-        ft.commit();
+        ft.commit();*/
+        this.finish();
     }
 
     @Override
@@ -177,5 +188,45 @@ public class RouteActivity extends AppCompatActivity implements RouteInterface{
         ft.replace(R.id.fragment_container, f);
         ft.addToBackStack(null);
         ft.commit();
+    }
+
+    @Override
+    public void toonHuidigCheckpoint() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_container, checkpointFragment);
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
+    @Override
+    public void probleemManier(Problem problem) {
+        ProbleemManier f = new ProbleemManier();
+        f.setProblem(problem);
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_container, f);
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    @Override
+    public void toonProbleemTekst(Problem problem) {
+        ProbleemTekst f = new ProbleemTekst();
+        f.setProblem(problem);
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_container, f);
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
+    @Override
+    public Problem getGeselecteerdProbleem() {
+        return null;
     }
 }

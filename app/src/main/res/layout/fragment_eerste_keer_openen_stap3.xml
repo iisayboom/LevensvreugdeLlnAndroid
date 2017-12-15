@@ -24,7 +24,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintTop_toBottomOf="@+id/txtTitel" />
 
         <EditText
             android:id="@+id/invoerStraat"
@@ -37,7 +37,6 @@
             android:fontFamily="@font/glaresome_regular"
             android:hint="Straat"
             android:inputType="textPersonName"
-            android:text="gbjhnm"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toStartOf="@+id/invoerNr"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +52,6 @@
             android:fontFamily="@font/glaresome_regular"
             android:hint="Nr"
             android:inputType="textPersonName"
-            android:text="5"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon" />
@@ -69,7 +67,6 @@
             android:fontFamily="@font/glaresome_regular"
             android:hint="Gemeente"
             android:inputType="textPersonName"
-            android:text="bjhkn"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +84,6 @@
             android:gravity="start"
             android:hint="Postcode"
             android:inputType="textPersonName"
-            android:text="7676"
             android:textAlignment="textStart"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
@@ -95,7 +91,7 @@
             app:layout_constraintTop_toBottomOf="@+id/invoerGemeente" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/txtTitel"
             android:layout_width="0dp"
             android:layout_height="71dp"
             android:background="@color/topBarGreen"
@@ -118,8 +114,8 @@
             android:layout_marginEnd="24dp"
             android:layout_marginTop="16dp"
             android:src="@drawable/arrow_right"
-            app:layout_constraintBottom_toBottomOf="@+id/textView6"
-            app:layout_constraintEnd_toEndOf="@+id/textView6"
+            app:layout_constraintBottom_toBottomOf="@+id/txtTitel"
+            app:layout_constraintEnd_toEndOf="@+id/txtTitel"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginRight="24dp" />
 
@@ -131,8 +127,8 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:src="@drawable/arrow_left"
-            app:layout_constraintBottom_toBottomOf="@+id/textView6"
-            app:layout_constraintStart_toStartOf="@+id/textView6"
+            app:layout_constraintBottom_toBottomOf="@+id/txtTitel"
+            app:layout_constraintStart_toStartOf="@+id/txtTitel"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginLeft="24dp" />
     </android.support.constraint.ConstraintLayout>
