@@ -1,7 +1,9 @@
 package com.example.dreeki.projectleerlingenapp.Fragments;
 
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,22 +12,26 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.dreeki.projectleerlingenapp.Adapters.CustomListAdapter;
-import com.example.dreeki.projectleerlingenapp.Interfaces.EersteKeerOpenenInterface;
 import com.example.dreeki.projectleerlingenapp.Interfaces.RouteInterface;
-import com.example.dreeki.projectleerlingenapp.Models.Location;
+import com.example.dreeki.projectleerlingenapp.Models.User;
+import com.example.dreeki.projectleerlingenapp.Models.Locatie;
 import com.example.dreeki.projectleerlingenapp.Models.Route;
 import com.example.dreeki.projectleerlingenapp.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
-public class RouteFragment extends Fragment implements View.OnClickListener {
+public class RouteFragment extends Fragment implements View.OnClickListener, TextToSpeech.OnInitListener {
 
     private ListView list;
     private List<Route> routes;
-    private List<Location> checkpointsRoute1;
-    private List<Location> checkpointsRoute2;
+    private List<Locatie> checkpointsRoute1;
+    private List<Locatie> checkpointsRoute2;
     private Route gekozenRoute;
+    private TextToSpeech tts;
+    private CustomListAdapter adapter;
+    private User user;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_route, container, false);
@@ -38,10 +44,12 @@ public class RouteFragment extends Fragment implements View.OnClickListener {
         checkpointsRoute1 = new ArrayList<>();
         checkpointsRoute2 = new ArrayList<>();
 
-        Location l1 = new Location(R.drawable.eerste,"Onegem","Aalst", "5", 9300, "Station Aalst",  "1","Stap richting het station van Aalst.");
-        Location l2 = new Location(R.drawable.tweede,"Stationstraat","Aalst", "17", 9300, "Esplanade Plein","2","Stap nu richting het Esplanade plein.");
-        Location l3 = new Location(R.drawable.derde,"Grote Markt","Aalst", "76", 9300, "Grote Markt","3","Stap richting de grote markt.");
-        Location l4 = new Location(R.drawable.laatste,"Arbeidstraat", "Aalst","14",9300,"Hogent","4","Stap richting campus hogeschool Gent.");
+        /*
+        Locatie l1 = new Locatie(0,R.drawable.eerste,"Onegem","Aalst", "5", 9300, "Station Aalst","Stap richting het station van Aalst.");
+        Locatie l2 = new Locatie(0,R.drawable.tweede,"Stationstraat","Aalst", "17", 9300, "Esplanade Plein","Stap nu richting het Esplanade plein.");
+        Locatie l3 = new Locatie(0,R.drawable.derde,"Grote Markt","Aalst", "76", 9300, "Grote Markt","Stap richting de grote markt.");
+        Locatie l4 = new Locatie(0,R.drawable.laatste,"Arbeidstraat", "Aalst","14",9300,"Hogent","Stap richting campus hogeschool Gent.");
+
 
         checkpointsRoute1.add(l2);
         checkpointsRoute1.add(l3);
@@ -51,8 +59,15 @@ public class RouteFragment extends Fragment implements View.OnClickListener {
         checkpointsRoute2.add(l3);
         checkpointsRoute2.add(l2);
         routes.add(new Route(l4,l1,checkpointsRoute2,"11"));
+        */
+        user = ((RouteInterface)getActivity()).getUser();
+        routes = user.routes;
 
-        CustomListAdapter adapter = new CustomListAdapter(getContext(), routes);
+
+        adapter = new CustomListAdapter(getContext(), routes);
+
+
+        this.tts = new TextToSpeech(getContext(), this);
 
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -60,8 +75,9 @@ public class RouteFragment extends Fragment implements View.OnClickListener {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 gekozenRoute = routes.get(position);
                 ((RouteInterface)getActivity()).setGekozenRoute(gekozenRoute);
-                Location location = ((RouteInterface)getActivity()).getNextLocation();
-                ((RouteInterface)getActivity()).volgendCheckpoint(location.getTitle(), "1/" + (gekozenRoute.getCheckpoints().size() + 1) , location.getImage(), location.getAanwijzing());
+                Locatie locatie = ((RouteInterface)getActivity()).getNextLocation();
+                ((RouteInterface)getActivity()).volgendCheckpoint(locatie.getTitle(), "1/" + (gekozenRoute.checkpoints.size() + 1) , locatie.getImage(), locatie.getAanwijzing());
+                tts.speak(gekozenRoute.end.getTarget().getTitle(), TextToSpeech.QUEUE_FLUSH, null);
             }
         });
 
@@ -78,4 +94,20 @@ public class RouteFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
+
+    @Override
+    public void onInit(int status) {
+        if (status == TextToSpeech.SUCCESS) {
+            Locale lang = tts.getLanguage();
+            int result = tts.setLanguage(lang);
+
+            if(result == TextToSpeech.LANG_NOT_SUPPORTED || result == TextToSpeech.LANG_MISSING_DATA) {
+                Log.e("Language","This language is not supported");
+            }
+        } else {
+            Log.e("init failed","init failed");
+        }
+    }
+
+
 }

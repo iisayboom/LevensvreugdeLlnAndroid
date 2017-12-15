@@ -92,14 +92,13 @@
             app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
         <TextView
-            android:id="@+id/textView18"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="48dp"
             android:fontFamily="@font/glaresome_regular"
-            android:text="U kan het profiel steeds wijzigen via de instellingen van de app."
+            android:text="U kan het profile steeds wijzigen via de instellingen van de app."
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="24sp"

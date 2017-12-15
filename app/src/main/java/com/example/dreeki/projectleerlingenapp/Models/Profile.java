@@ -1,48 +1,55 @@
 package com.example.dreeki.projectleerlingenapp.Models;
 
 import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
+import io.objectbox.relation.ToOne;
 
 /**
  * Created by dreeki on 26/10/17.
  */
-
+@Entity
 public class Profile {
+    @Id
+    public long id;
     private String name;
-    private Location home;
+    public ToOne<Locatie> home;
     private String password;
-    private PersonalPicture personalPicture;
+    private int personalPicture;
     private String email;
 
-    public Profile(String password, PersonalPicture personalPicture, String name, Location home, String email){
+    public Profile() {
+
+    }
+
+    public Profile(long id, String password, int personalPicture, String name, String email){
+        this.id = id;
         this.password = password;
         this.personalPicture = personalPicture;
         this.name = name;
-        this.home = home;
         this.email = email;
     }
 
-    public void schakelLockUit(){
-        password = null;
+    public Profile(long id, int personalPicture, String name, String email){
+        this.id = id;
+        this.personalPicture = personalPicture;
+        this.name = name;
+        this.email = email;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
-    public PersonalPicture getPersonalPicture() {
+    public int getPersonalPicture() {
         return personalPicture;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Location getHome() {
-        return home;
-    }
-
-    public void setHome(Location home) {
-        this.home = home;
     }
 
     public String getPassword() {
@@ -59,5 +66,9 @@ public class Profile {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setPersonalPicture(int personalPicture) {
+        this.personalPicture = personalPicture;
     }
 }

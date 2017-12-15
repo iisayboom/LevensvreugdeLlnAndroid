@@ -16,19 +16,24 @@ import com.example.dreeki.projectleerlingenapp.R;
 
 public class SettingsListView extends LinearLayout {
 
-    public SettingsListView(Context context,int image,String titel, String inhoud) {
+    public SettingsListView(Context context, int image, String titel, String inhoud) {
         super(context);
         vulLijst(image,titel, inhoud);
     }
 
-    public SettingsListView(Context context, @Nullable AttributeSet attrs,int image,String titel, String inhoud) {
+    public SettingsListView(Context context, @Nullable AttributeSet attrs, int image, String titel, String inhoud) {
         super(context, attrs);
         vulLijst(image,titel, inhoud);
     }
 
-    public SettingsListView(Context context, @Nullable AttributeSet attrs, int defStyleAttr,int image,String titel, String inhoud) {
+    public SettingsListView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int image, String titel, String inhoud) {
         super(context, attrs, defStyleAttr);
         vulLijst(image,titel, inhoud);
+    }
+
+    public SettingsListView(Context context, int image, String street, String city, String number, int postal) {
+        super(context);
+        vulAdres(image,street, number, postal, city);
     }
 
     public void vulLijst(int image,String titel, String inhoud) {
@@ -41,7 +46,27 @@ public class SettingsListView extends LinearLayout {
         TextView t1 = findViewById(R.id.txtTitel);
         t1.setText(titel);
 
-        TextView t2 = findViewById(R.id.txtInhoud);
+        TextView t2 = findViewById(R.id.txtStraat);
         t2.setText(inhoud);
+    }
+
+    public void vulAdres(int image,String street, String number, int postal, String city) {
+        LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater.inflate(R.layout.list_item_settings_adress, this, true);
+
+        ImageView i = findViewById(R.id.imgPrentje);
+        i.setImageResource(image);
+
+        TextView t1 = findViewById(R.id.txtStraat);
+        t1.setText(street);
+
+        TextView t2 = findViewById(R.id.txtNummer);
+        t2.setText(number);
+
+        TextView t3 = findViewById(R.id.txtPostcode);
+        t3.setText(postal + "");
+
+        TextView t4 = findViewById(R.id.txtStad);
+        t4.setText(city);
     }
 }

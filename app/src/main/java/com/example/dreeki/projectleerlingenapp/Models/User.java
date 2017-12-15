@@ -1,39 +1,41 @@
 package com.example.dreeki.projectleerlingenapp.Models;
 
-import com.example.dreeki.projectleerlingenapp.Interfaces.TravellingState;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.dreeki.projectleerlingenapp.Interfaces.TravelingState;
 
 import io.objectbox.annotation.Entity;
 import io.objectbox.annotation.Id;
+import io.objectbox.annotation.Transient;
+import io.objectbox.relation.ToMany;
 import io.objectbox.relation.ToOne;
 
 /**
  * Created by dreeki on 26/10/17.
  */
 
+@Entity
 public class User {
-    private String id;
-    private List<Route> routes;
-    private Profile profile;
-    private List<Mentor> mentors;
-    private TravellingState travellingState;
-    private boolean kanGpsVolgen;
+    @Id
+    public long id;
+    public ToMany<Route> routes;
+    public ToOne<Profile> profile;
+    public ToOne<Mentor> mentor;
+    @Transient
+    public TravelingState travelingState;
     private static User user;
+    private String firebaseUID;
 
-    private User(List<Mentor> mentors, Profile profile, List<Route> routes, boolean kanGpsVolgen, String id){
-        this.routes = routes;
-        this.mentors = mentors;
-        this.kanGpsVolgen = kanGpsVolgen;
-        travellingState = new NotTraveling();
-        this.profile = profile;
+
+    public User() {
+
+    }
+
+    public User(long id){
         this.id = id;
     }
 
-    public static User get(List<Mentor> mentors, Profile profile, List<Route> routes, boolean kanGpsVolgen, String id) {
+    public static User get(long id) {
         if (user == null) {
-            user = new User(mentors, profile, routes,kanGpsVolgen,id);
+            user = new User(id);
         }
 
         return get();
@@ -41,29 +43,29 @@ public class User {
 
     public static User get() {
         if(user == null) {
-            user = new User(new ArrayList<Mentor>(),null, new ArrayList<Route>(), false,null);
+            user = new User(6);
         }
 
         return user;
     }
 
-    public List<Route> getRoutes() {
-        return routes;
+    public TravelingState getTravelingState() {
+        return travelingState;
     }
 
-    public List<Mentor> getMentors() {
-        return mentors;
+    public void setTravelingState(TravelingState travelingState) {
+        this.travelingState = travelingState;
     }
 
-    public Profile getProfile() {
-        return profile;
+    public long getId() {
+        return id;
     }
 
-    public TravellingState getTravellingState() {
-        return travellingState;
+    public String getFirebaseUID() {
+        return firebaseUID;
     }
 
-    public void setTravellingState(TravellingState travellingState) {
-        this.travellingState = travellingState;
+    public void setFirebaseUID(String firebaseUID) {
+        this.firebaseUID = firebaseUID;
     }
 }

@@ -32,14 +32,15 @@ public class EersteKeerOpenenStap0Fragment extends Fragment implements View.OnCl
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+
             case R.id.btnGoNextStep0:
                 ((EersteKeerOpenenInterface)getActivity()).goToStep1();
                 break;
-                /*
+
             case R.id.btnRegistered:
                 ((EersteKeerOpenenInterface)getActivity()).goToAlreadyRegistered();
                 break;
-                */
+
         }
     }
 }

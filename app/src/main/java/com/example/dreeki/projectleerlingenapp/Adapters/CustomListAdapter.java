@@ -39,8 +39,8 @@ public class CustomListAdapter extends ArrayAdapter<Route> {
         ImageView imgImageView = (ImageView) convertView.findViewById(R.id.imgPrentje);
         TextView textView = (TextView) convertView.findViewById(R.id.txtTitel);
         // Populate the data into the template view using the data object
-        textView.setText(r.getEnd().getTitle());
-        imgImageView.setImageResource(r.getCheckpoints().get(r.getCheckpoints().size()-1).getImage());
+        textView.setText(r.end.getTarget().getTitle());
+        imgImageView.setImageResource(r.checkpoints.get(r.checkpoints.size()-1).getImage());
         // Return the completed view to render on screen
         return convertView;
     }

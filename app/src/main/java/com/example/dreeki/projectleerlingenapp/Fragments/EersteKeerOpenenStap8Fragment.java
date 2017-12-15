@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.dreeki.projectleerlingenapp.Interfaces.EersteKeerOpenenInterface;
 import com.example.dreeki.projectleerlingenapp.R;
@@ -26,6 +27,10 @@ public class EersteKeerOpenenStap8Fragment extends Fragment implements View.OnCl
         ImageView b2 = v.findViewById(R.id.btnPrevStep3);
         b.setOnClickListener(this);
         b2.setOnClickListener(this);
+
+        TextView tv = v.findViewById(R.id.tvIcoonPersoon);
+
+        tv.setText(tv.getText().toString().replace("{persoon}", ((EersteKeerOpenenInterface)getActivity()).getName()));
 
         return v;
     }

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_margin="16dp"
+        android:layout_margin="4dp"
         card_view:cardBackgroundColor="#80A2ED00"
         card_view:cardCornerRadius="0dp">
 
@@ -23,20 +23,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:paddingBottom="16dp"
-                android:paddingTop="16dp" />
+                android:padding="32dp" />
 
             <TextView
                 android:id="@+id/problemText"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:background="@android:color/white"
-                android:backgroundTint="@android:color/white"
                 android:gravity="center_vertical"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:paddingTop="8dp"
-                android:textColor="#4c4c4c"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:paddingTop="4dp"
+                android:textColor="@color/white"
                 android:textSize="24sp" />
 
 

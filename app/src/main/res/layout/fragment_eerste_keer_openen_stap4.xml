@@ -68,41 +68,6 @@
             app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <EditText
-            android:id="@+id/invoerNaamBegeleider"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:ems="10"
-            android:fontFamily="@font/glaresome_regular"
-            android:hint="Naam begeleider"
-            android:inputType="textAutoComplete|textPersonName"
-            android:text="ghjk"
-            android:textColor="@android:color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon" />
-
-        <EditText
-            android:id="@+id/invoerTelefoonBegeleider"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:ems="10"
-            android:fontFamily="@font/glaresome_regular"
-            android:hint="Telefoon nummer"
-            android:inputType="textPersonName"
-            android:selectAllOnFocus="false"
-            android:text="767677"
-            android:textColor="@android:color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/invoerNaamBegeleider" />
-
-        <EditText
             android:id="@+id/invoerEmailBegeleider"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -113,11 +78,22 @@
             android:fontFamily="@font/glaresome_regular"
             android:hint="E-mail adres"
             android:inputType="textPersonName"
-            android:text="iuhbjkbkj@kjhi.tfty"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/invoerTelefoonBegeleider" />
+            app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon" />
+
+        <TextView
+            android:id="@+id/txtFout"
+            android:layout_width="292dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp"
+            android:textAlignment="center"
+            android:textSize="36sp"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/invoerEmailBegeleider" />
 
     </android.support.constraint.ConstraintLayout>
 

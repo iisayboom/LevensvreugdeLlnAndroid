@@ -71,7 +71,7 @@ public class EersteKeerOpenenStap2Fragment extends Fragment implements View.OnCl
 
         tv.setText(tv.getText().toString().replace("{persoon}", ((EersteKeerOpenenInterface)getActivity()).getName()));
 
-        int prentId = ((EersteKeerOpenenInterface) getActivity()).getPicture().getPictureLinkId();
+        int prentId = ((EersteKeerOpenenInterface) getActivity()).getPicture();
         if(prentId != -1){
             //selecteer prent met findById(prentId)
         }
@@ -84,12 +84,12 @@ public class EersteKeerOpenenStap2Fragment extends Fragment implements View.OnCl
         switch (v.getId()){
             case R.id.btnGoNextStep5:
                 if(lastClicked == 1) {
-                    ((EersteKeerOpenenInterface) getActivity()).getPicture().setPictureLinkId(R.drawable.construction_icon);
+                    ((EersteKeerOpenenInterface) getActivity()).setPicture(R.drawable.construction_icon);
                 } else if(lastClicked == 2) {
-                    ((EersteKeerOpenenInterface) getActivity()).getPicture().setPictureLinkId(R.drawable.worker);
+                    ((EersteKeerOpenenInterface) getActivity()).setPicture(R.drawable.worker);
                 }
 
-                if(((EersteKeerOpenenInterface) getActivity()).getPicture().getPictureLinkId() != -1){
+                if(((EersteKeerOpenenInterface) getActivity()).getPicture() != -1){
                     ((EersteKeerOpenenInterface) getActivity()).goToStep3();
                 }
                 break;

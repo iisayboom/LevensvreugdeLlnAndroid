@@ -1,8 +1,8 @@
 package com.example.dreeki.projectleerlingenapp.Interfaces;
 
-import android.widget.ImageView;
-
-import com.example.dreeki.projectleerlingenapp.Models.Location;
+import com.example.dreeki.projectleerlingenapp.Models.User;
+import com.example.dreeki.projectleerlingenapp.Models.Locatie;
+import com.example.dreeki.projectleerlingenapp.Models.Problem;
 import com.example.dreeki.projectleerlingenapp.Models.Route;
 
 /**
@@ -18,9 +18,14 @@ public interface RouteInterface {
     void setGekozenRoute(Route r);
     Route getRouteKeuze();
     void toonGeslaagdScherm();
-    Location getLocation();
+    Locatie getLocation();
     void resetCurrentCheckPoint();
-    Location getNextLocation();
+    Locatie getNextLocation();
     void goToLoginScreen();
     void toonProblemen();
+    void toonHuidigCheckpoint();
+    void probleemManier(Problem problem);
+    User getUser();
+    void toonProbleemTekst(Problem problem);
+    Problem getGeselecteerdProbleem();
 }

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "899187215481",
+    "firebase_url": "https://levensvreugde-e30e3.firebaseio.com",
+    "project_id": "levensvreugde-e30e3",
+    "storage_bucket": "levensvreugde-e30e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:899187215481:android:8427854fbb620914",
+        "android_client_info": {
+          "package_name": "com.example.dreeki.projectleerlingenapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "899187215481-ic9k2c4j2u74s6jjq130767q6r35qebj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXM8Q6ThW6dZrlLG71lpo6sJM4owHUezY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
