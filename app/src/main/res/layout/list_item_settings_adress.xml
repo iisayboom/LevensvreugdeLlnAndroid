@@ -78,14 +78,14 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Name"
             android:textAlignment="textStart"
-            app:layout_constraintEnd_toStartOf="@+id/txtPostcode"
-            app:layout_constraintStart_toEndOf="@+id/imgPrentje"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtPostcode"
             app:layout_constraintTop_toBottomOf="@+id/txtStraat" />
 
         <EditText
@@ -93,12 +93,15 @@
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Name"
             android:textAlignment="textStart"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.039"
+            app:layout_constraintStart_toEndOf="@+id/imgPrentje"
             app:layout_constraintTop_toBottomOf="@+id/txtStraat" />
 
     </android.support.constraint.ConstraintLayout>

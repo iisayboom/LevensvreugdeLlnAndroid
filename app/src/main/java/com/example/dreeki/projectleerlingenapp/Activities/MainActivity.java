@@ -69,25 +69,25 @@ public class MainActivity extends AppCompatActivity implements EersteKeerOpenenI
         routes = new ArrayList<>();
         checkpoints = new ArrayList<>();
 
-        app = ((App)getApplication());
+        app = ((App) getApplication());
         app.setMainActivity(this);
         userBox = app.getBoxStore().boxFor(User.class);
         userBox.removeAll();
-        try{
+        try {
             user = userBox.getAll().get(0);
             app.setUser(user);
-        } catch(Exception e){
+        } catch (Exception e) {
             user = null;
         }
 
-        if(user == null){
+        if (user == null) {
             EersteKeerOpenenStap0Fragment f = new EersteKeerOpenenStap0Fragment();
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.fragment_container, f);
             ft.addToBackStack(null);
             ft.commit();
-        }else{
+        } else {
             LoginFragment f = new LoginFragment();
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements EersteKeerOpenenI
     }
 
     @Override
-    public void goToStep1(){
+    public void goToStep1() {
         EersteKeerOpenenStap1Fragment f = new EersteKeerOpenenStap1Fragment();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -211,7 +211,7 @@ public class MainActivity extends AppCompatActivity implements EersteKeerOpenenI
 
     @Override
     public void getUserFromBackend(String email, String password) {
-        ((App)getApplication()).getUserFromBackend(email, password);
+        ((App) getApplication()).getUserFromBackend(email, password);
     }
 
 
@@ -219,18 +219,18 @@ public class MainActivity extends AppCompatActivity implements EersteKeerOpenenI
     @Override
     public void goToLoginScreen() {
 
-        if(app.getUser() == null) {
+        if (app.getUser() == null) {
             User u = new User(0);
             Profile p = new Profile(0, this.password, this.picture, this.name, this.email);
-            Locatie homeLocatie = new Locatie(6, "", street, city, number, postalCode, "Home", "Nog een aanwijzing","");
+            Locatie homeLocatie = new Locatie(6, "", street, city, number, postalCode, "Home", "Nog een aanwijzing", "");
             Mentor mentor = new Mentor(0);
             mentor.setEmail(mentorEmail);
             u.profile.setTarget(p);
             u.profile.getTarget().home.setTarget(homeLocatie);
             u.mentor.setTarget(mentor);
             app.sendUserToBackend(u);
-        }else{
-            ((App)getApplication()).checkDataVersion();
+        } else {
+            ((App) getApplication()).checkDataVersion();
         }
     }
 
@@ -240,7 +240,7 @@ public class MainActivity extends AppCompatActivity implements EersteKeerOpenenI
     }
 
     @Override
-    public void continueToLoginScreen(){
+    public void continueToLoginScreen() {
         checkPermissions();
 
         LoginFragment f = new LoginFragment();
@@ -259,6 +259,12 @@ public class MainActivity extends AppCompatActivity implements EersteKeerOpenenI
         ft.replace(R.id.fragment_container, f);
         ft.addToBackStack(null);
         ft.commit();
+    }
+
+    @Override
+    public void openSettings() {
+        Intent intentSettings = new Intent(this, SettingsActivity.class);
+        startActivity(intentSettings);
     }
 
     @Override
@@ -407,19 +413,19 @@ public class MainActivity extends AppCompatActivity implements EersteKeerOpenenI
 
     @Override
     public void geefEersteKeerOpenenLoginFragmentAanApp(EersteKeerOpenenLoginFragment f) {
-        ((App)getApplication()).setFragment(f);
+        ((App) getApplication()).setFragment(f);
     }
 
     @Override
-    public void geefEersteKeerOpenenStapFragmentAanApp(EersteKeerOpenenStap4Fragment f){
-        ((App)getApplication()).setEersteKeerOpenenStap4Fragment(f);
+    public void geefEersteKeerOpenenStapFragmentAanApp(EersteKeerOpenenStap4Fragment f) {
+        ((App) getApplication()).setEersteKeerOpenenStap4Fragment(f);
     }
 
     private void checkPermissions() {
         if (ContextCompat.checkSelfPermission(getApplicationContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission( getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},

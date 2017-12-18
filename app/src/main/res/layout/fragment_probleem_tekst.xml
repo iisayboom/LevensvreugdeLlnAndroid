@@ -42,6 +42,8 @@
             android:layout_marginTop="8dp"
             android:textAlignment="center"
             android:textColor="@color/donkerGrijs"
+            android:fontFamily="@font/glaresome_bold"
+
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -52,11 +54,11 @@
             android:id="@+id/btnLuidspreker"
             android:layout_width="44dp"
             android:layout_height="42dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="24dp"
             android:src="@drawable/luidspreker"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/txtTekst" />
+            app:layout_constraintBottom_toBottomOf="@+id/txtTekst"
+            app:layout_constraintEnd_toEndOf="@+id/txtTekst" />
     </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>
