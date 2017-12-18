@@ -33,5 +33,8 @@ public interface BackendCalls {
     Call<String> updateUid(@Path("firebaseUid") String firebaseUid, @Path("email") String email);
 
     @POST("checkuserdataversion/{email}/{dataversion}")
-    Call<String> checkDataVersion(@Path("email") String email, @Path("dataverison") int dataversion);
+    Call<String> checkDataVersion(@Path("email") String email, @Path("dataversion") int dataversion);
+
+    @PATCH("student/{email}")
+    Call<User> updateUser(@Path("email") String email, @Body User user);
 }
