@@ -5,8 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
@@ -15,6 +18,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.dreeki.projectleerlingenapp.App;
@@ -29,6 +33,9 @@ import com.example.dreeki.projectleerlingenapp.Models.Route;
 import com.example.dreeki.projectleerlingenapp.R;
 import com.example.dreeki.projectleerlingenapp.Services.TrackingService;
 
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,17 +107,7 @@ public class MainActivity extends AppCompatActivity implements EersteKeerOpenenI
         ft.addToBackStack(null);
         ft.commit();
     }
-    /*
-    @Override
-    public void goToStep1(){
-        ProblemFragment f = new ProblemFragment();
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.fragment_container, f);
-        ft.addToBackStack(null);
-        ft.commit();
-    }
-*/
+
     @Override
     public void goToStep2() {
         EersteKeerOpenenStap2Fragment f = new EersteKeerOpenenStap2Fragment();
@@ -225,15 +222,15 @@ public class MainActivity extends AppCompatActivity implements EersteKeerOpenenI
         if(app.getUser() == null) {
             User u = new User(0);
             Profile p = new Profile(0, this.password, this.picture, this.name, this.email);
-            Locatie homeLocatie = new Locatie(6, R.drawable.voet, street, city, number, postalCode, "Home", "Nog een aanwijzing","");
-            Mentor mentor = new Mentor();
+            Locatie homeLocatie = new Locatie(6, "", street, city, number, postalCode, "Home", "Nog een aanwijzing","");
+            Mentor mentor = new Mentor(0);
             mentor.setEmail(mentorEmail);
             u.profile.setTarget(p);
             u.profile.getTarget().home.setTarget(homeLocatie);
             u.mentor.setTarget(mentor);
             app.sendUserToBackend(u);
         }else{
-            continueToLoginScreen();
+            ((App)getApplication()).checkDataVersion();
         }
     }
 
@@ -244,11 +241,19 @@ public class MainActivity extends AppCompatActivity implements EersteKeerOpenenI
 
     @Override
     public void continueToLoginScreen(){
-        //checkPermissions();
-        app.changeFirebaseUIDInBackend();
-
+        checkPermissions();
 
         LoginFragment f = new LoginFragment();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.fragment_container, f);
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
+    @Override
+    public void showFirstScreen() {
+        EersteKeerOpenenStap0Fragment f = new EersteKeerOpenenStap0Fragment();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fragment_container, f);

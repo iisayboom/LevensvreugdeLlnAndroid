@@ -1,7 +1,10 @@
 package com.example.dreeki.projectleerlingenapp.Adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,8 @@ import android.widget.TextView;
 import com.example.dreeki.projectleerlingenapp.Models.Route;
 import com.example.dreeki.projectleerlingenapp.R;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
 
 /**
@@ -40,8 +45,28 @@ public class CustomListAdapter extends ArrayAdapter<Route> {
         TextView textView = (TextView) convertView.findViewById(R.id.txtTitel);
         // Populate the data into the template view using the data object
         textView.setText(r.end.getTarget().getTitle());
-        imgImageView.setImageResource(r.checkpoints.get(r.checkpoints.size()-1).getImage());
+
+        String newImageName = r.end.getTarget().getImage().replace("uploads/", "");
+        Bitmap test = loadImageBitmap(parent.getContext().getApplicationContext(), newImageName);
+        imgImageView.setImageBitmap(test);
         // Return the completed view to render on screen
         return convertView;
+    }
+
+    public Bitmap loadImageBitmap(Context context, String imageName) {
+        Bitmap bitmap = null;
+        FileInputStream fiStream;
+        try {
+            String path = imageName.replaceAll(".png|.jpg", "");
+            File file = context.getApplicationContext().getFileStreamPath(path);
+            if (file.exists()) Log.d("file", imageName);
+            fiStream = context.openFileInput(path);
+            bitmap = BitmapFactory.decodeStream(fiStream);
+            fiStream.close();
+        } catch (Exception e) {
+            Log.d("saveImage", "Exception 3, Something went wrong!");
+            e.printStackTrace();
+        }
+        return bitmap;
     }
 }

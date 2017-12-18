@@ -19,12 +19,11 @@ public class EersteKeerOpenenStap0Fragment extends Fragment implements View.OnCl
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_eerste_keer_openen_stap0, container, false);
 
-        ImageView iv = v.findViewById(R.id.btnGoNextStep0);
+        Button iv = v.findViewById(R.id.btnGoNextStep0);
         iv.setOnClickListener(this);
 
         Button b = v.findViewById(R.id.btnRegistered);
         b.setOnClickListener(this);
-
 
         return v;
     }
@@ -32,15 +31,15 @@ public class EersteKeerOpenenStap0Fragment extends Fragment implements View.OnCl
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-
             case R.id.btnGoNextStep0:
                 ((EersteKeerOpenenInterface)getActivity()).goToStep1();
                 break;
-
             case R.id.btnRegistered:
                 ((EersteKeerOpenenInterface)getActivity()).goToAlreadyRegistered();
                 break;
-
+            case R.id.btnBack:
+                ((EersteKeerOpenenInterface)getActivity()).showFirstScreen();
+                break;
         }
     }
 }

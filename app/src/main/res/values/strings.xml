@@ -4,7 +4,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="smaller"><![CDATA[<]]></string>
     <string name="bigger"><![CDATA[>]]></string>
-    <string name="subTitelStartSchermStap0">Maak een profile aan voor de user zodat hij steeds gepaste inhoud te zien krijgt.</string>
+    <string name="subTitelStartSchermStap0">Maak een profiel aan voor de user zodat hij steeds gepaste inhoud te zien krijgt.</string>
     <string name="title_activity_bottom_navigation">bottomNavigation</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>

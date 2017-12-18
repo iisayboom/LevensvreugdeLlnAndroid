@@ -15,8 +15,12 @@ public class Mentor {
     private String phoneNumber;
     private String email;
 
-    public Mentor(){
+    public Mentor(long id){
+        this.id = id;
+    }
 
+    public Mentor(long id, String name, String phoneNumber) {
+        this(id, name, phoneNumber, "");
     }
 
     public Mentor(long id, String name, String phoneNumber, String email){

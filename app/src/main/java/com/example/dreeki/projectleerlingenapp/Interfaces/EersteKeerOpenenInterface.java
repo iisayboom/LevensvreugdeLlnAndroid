@@ -52,4 +52,5 @@ public interface EersteKeerOpenenInterface {
     void geefEersteKeerOpenenLoginFragmentAanApp(EersteKeerOpenenLoginFragment f);
     void geefEersteKeerOpenenStapFragmentAanApp(EersteKeerOpenenStap4Fragment f);
     void continueToLoginScreen();
+    void showFirstScreen();
 }

@@ -1,5 +1,8 @@
 package com.example.dreeki.projectleerlingenapp.Fragments;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
@@ -18,6 +21,8 @@ import com.example.dreeki.projectleerlingenapp.Models.Locatie;
 import com.example.dreeki.projectleerlingenapp.Models.Route;
 import com.example.dreeki.projectleerlingenapp.R;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -26,8 +31,6 @@ public class RouteFragment extends Fragment implements View.OnClickListener, Tex
 
     private ListView list;
     private List<Route> routes;
-    private List<Locatie> checkpointsRoute1;
-    private List<Locatie> checkpointsRoute2;
     private Route gekozenRoute;
     private TextToSpeech tts;
     private CustomListAdapter adapter;
@@ -41,25 +44,7 @@ public class RouteFragment extends Fragment implements View.OnClickListener, Tex
 
         list = v.findViewById(R.id.listRoutes);
         routes = new ArrayList<>();
-        checkpointsRoute1 = new ArrayList<>();
-        checkpointsRoute2 = new ArrayList<>();
 
-        /*
-        Locatie l1 = new Locatie(0,R.drawable.eerste,"Onegem","Aalst", "5", 9300, "Station Aalst","Stap richting het station van Aalst.");
-        Locatie l2 = new Locatie(0,R.drawable.tweede,"Stationstraat","Aalst", "17", 9300, "Esplanade Plein","Stap nu richting het Esplanade plein.");
-        Locatie l3 = new Locatie(0,R.drawable.derde,"Grote Markt","Aalst", "76", 9300, "Grote Markt","Stap richting de grote markt.");
-        Locatie l4 = new Locatie(0,R.drawable.laatste,"Arbeidstraat", "Aalst","14",9300,"Hogent","Stap richting campus hogeschool Gent.");
-
-
-        checkpointsRoute1.add(l2);
-        checkpointsRoute1.add(l3);
-        //begin, eind, checkpoints
-        routes.add(new Route(l1,l4, checkpointsRoute1,"10"));
-
-        checkpointsRoute2.add(l3);
-        checkpointsRoute2.add(l2);
-        routes.add(new Route(l4,l1,checkpointsRoute2,"11"));
-        */
         user = ((RouteInterface)getActivity()).getUser();
         routes = user.routes;
 
@@ -80,8 +65,6 @@ public class RouteFragment extends Fragment implements View.OnClickListener, Tex
                 tts.speak(gekozenRoute.end.getTarget().getTitle(), TextToSpeech.QUEUE_FLUSH, null);
             }
         });
-
-
 
         return v;
     }

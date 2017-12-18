@@ -43,7 +43,7 @@ public class EersteKeerOpenenStap7Fragment extends Fragment implements View.OnCl
         switch (v.getId()){
             case R.id.btnGoNextStep8:
                 String email = ((EditText)v.getRootView().findViewById(R.id.emailInvullenVeld)).getText().toString().trim();
-                if(email != null && !email.equals("")) {
+                if(controleerVelden()) {
                     ((EersteKeerOpenenInterface) getActivity()).setEmail(email);
                     ((EersteKeerOpenenInterface) getActivity()).goToStep8();
                 }
@@ -52,5 +52,21 @@ public class EersteKeerOpenenStap7Fragment extends Fragment implements View.OnCl
                 ((EersteKeerOpenenInterface) getActivity()).goToStep1();
                 break;
         }
+    }
+
+    private boolean controleerVelden(){
+        boolean allesIngevuld = true;
+
+        EditText editText = getView().findViewById(R.id.emailInvullenVeld);
+
+        if(editText.getText().toString() == null || editText.getText().toString().trim() == ""){
+            allesIngevuld = false;
+            //error geven voor dit veld
+        }else if(!editText.getText().toString().trim().matches("\\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}\\b")){
+            allesIngevuld = false;
+            //error geven dat het een email moet zijn
+        }
+
+        return  allesIngevuld;
     }
 }

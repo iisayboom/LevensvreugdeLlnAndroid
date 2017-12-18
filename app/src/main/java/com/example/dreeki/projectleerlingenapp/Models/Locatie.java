@@ -13,7 +13,7 @@ import io.objectbox.annotation.Transient;
  */
 @Entity
 public class Locatie {
-    private int image;
+    private String image;
     private String street;
     private String city;
     private String number;
@@ -30,16 +30,19 @@ public class Locatie {
     public Locatie() {
     }
 
-    public Locatie(long id, int picture, String street, String city, String number, int postalCode, String title){
+    public Locatie(long id, String street, String city, String number, int postalCode, String title){
+        this(id,"",street,city,number,postalCode,title, "","");
+    }
+
+    public Locatie(long id, String picture, String street, String city, String number, int postalCode, String title){
         this(id,picture,street,city,number,postalCode,title, "","");
     }
 
-    public Locatie(long id, int picture, String street, String city, String number, int postalCode, String title, String state){
+    public Locatie(long id, String picture, String street, String city, String number, int postalCode, String title, String state){
         this(id,picture,street,city,number,postalCode,title, "",state);
-
     }
 
-    public Locatie(long id, int picture, String street, String city, String number, int postalCode, String title, String aanwijzing, String state){
+    public Locatie(long id, String picture, String street, String city, String number, int postalCode, String title, String aanwijzing, String state){
         this.image = picture;
         this.street = street;
         this.city = city;
@@ -67,7 +70,7 @@ public class Locatie {
         return city;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
@@ -83,7 +86,7 @@ public class Locatie {
         this.city = city;
     }
 
-    public void setImage(int picture) {
+    public void setImage(String picture) {
         this.image = picture;
     }
 

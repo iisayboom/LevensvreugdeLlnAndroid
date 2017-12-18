@@ -43,8 +43,7 @@ public class ProblemFragment extends Fragment implements View.OnClickListener, T
         View v = inflater.inflate(R.layout.fragment_problem, container, false);
         problems = new ArrayList<>();
         colorHandler = new ColorHandlerForAndroidMaterialDesign();
-
-
+        
         final GridView problemListView = v.findViewById(R.id.problemList);
 
         CardView c = v.findViewById(R.id.card_view);

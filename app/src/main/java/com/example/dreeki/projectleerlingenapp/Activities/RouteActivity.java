@@ -1,5 +1,9 @@
 package com.example.dreeki.projectleerlingenapp.Activities;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +25,10 @@ import com.example.dreeki.projectleerlingenapp.Models.Locatie;
 import com.example.dreeki.projectleerlingenapp.Models.Problem;
 import com.example.dreeki.projectleerlingenapp.Models.Route;
 import com.example.dreeki.projectleerlingenapp.R;
+
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.URL;
 
 import io.objectbox.Box;
 
@@ -70,12 +78,12 @@ public class RouteActivity extends AppCompatActivity implements RouteInterface{
     }
 
     @Override
-    public void volgendCheckpoint(String t,String st, int src, String stap) {
+    public void volgendCheckpoint(String t,String st, String src, String stap) {
 
         Bundle b = new Bundle();
         b.putString("titel", t);
         b.putString("subtitel", st);
-        b.putInt("img", src);
+        b.putString("img", src);
         b.putString("stap", stap);
 
         checkpointFragment = new CheckpointFragment();
@@ -113,7 +121,6 @@ public class RouteActivity extends AppCompatActivity implements RouteInterface{
     public Locatie getLocation(){
         return this.checkpoint;
     }
-
 
     @Override
     public void setGekozenRoute(Route r) {
@@ -229,4 +236,5 @@ public class RouteActivity extends AppCompatActivity implements RouteInterface{
     public Problem getGeselecteerdProbleem() {
         return null;
     }
+
 }

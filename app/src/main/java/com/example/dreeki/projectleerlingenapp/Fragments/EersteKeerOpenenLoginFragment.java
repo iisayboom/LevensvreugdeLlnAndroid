@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.dreeki.projectleerlingenapp.Interfaces.EersteKeerOpenenInterface;
 import com.example.dreeki.projectleerlingenapp.Models.User;
@@ -34,30 +35,8 @@ public class EersteKeerOpenenLoginFragment extends Fragment implements View.OnCl
         edt1 = v.findViewById(R.id.txtUsername);
         edt2 = v.findViewById(R.id.txtWachtwoord);
 
-        /*
-        User user = new User();
-
-        user.mentors.add(new Mentor(0,"Andreas De Witte", "04567483", "andreas.dewitte@hotmail.com"));
-        user.profile.setTarget(new Profile(0,"test",R.drawable.construction_icon,"Niels","niels@hotmail.com"));
-
-
-        //dummy data
-        List<Locatie> checkpoints = new ArrayList<>();
-
-        Locatie l1 = new Locatie(0,R.drawable.eerste,"Onegem","Aalst", "5", 9300, "Station Aalst","Stap richting het station van Aalst.");
-        Locatie l2 = new Locatie(0,R.drawable.tweede,"Stationstraat","Aalst", "17", 9300, "Esplanade Plein","Stap nu richting het Esplanade plein.");
-        Locatie l3 = new Locatie(0,R.drawable.derde,"Grote Markt","Aalst", "76", 9300, "Grote Markt","Stap richting de grote markt.");
-
-        checkpoints.add(l1);
-        checkpoints.add(l2);
-        checkpoints.add(l3);
-
-        Route route = new Route(0);
-        route.begin.setTarget(l1);
-        route.end.setTarget(l2);
-        user.routes.add(route);
-        user.routes.get(0).checkpoints.addAll(checkpoints);
-        */
+        ImageView ivBack = v.findViewById(R.id.btnBack);
+        ivBack.setOnClickListener(this);
 
         return v;
     }
@@ -72,7 +51,9 @@ public class EersteKeerOpenenLoginFragment extends Fragment implements View.OnCl
             case R.id.btnLogin:
                     ((EersteKeerOpenenInterface)getActivity()).geefEersteKeerOpenenLoginFragmentAanApp(this);
                     ((EersteKeerOpenenInterface)getActivity()).getUserFromBackend(email, wachtwoord);
-                    // via activity deze fragment doorgeven aan app
+                break;
+            case R.id.btnBack:
+                ((EersteKeerOpenenInterface)getActivity()).showFirstScreen();
                 break;
         }
     }
