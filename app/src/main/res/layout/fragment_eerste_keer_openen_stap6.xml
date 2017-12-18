@@ -50,10 +50,12 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="130dp"
-            android:background="@android:color/holo_green_light"
+            android:background="@color/topBarGreen"
             android:elevation="0dp"
             android:fontFamily="@font/glaresome_regular"
             android:text="Start"
+            android:textSize="24sp"
+            android:textColor="@color/white"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon" />

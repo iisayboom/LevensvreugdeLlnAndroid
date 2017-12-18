@@ -331,8 +331,7 @@ public class App extends Application {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
                     if (response.isSuccessful()) {
-                        Intent intentSettings = new Intent(activity, SettingsActivity.class);
-                        startActivity(intentSettings);
+                        mainActivity.openSettings();
                     }
                 }
 
