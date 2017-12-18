@@ -92,7 +92,6 @@ public class App extends Application {
     }
 
 
-    //zeer onveilig, maar gebrek aan beter
     public void getUserFromBackend(String email, String password) {
 
         GsonBuilder gsonBuilder = new GsonBuilder();
@@ -286,6 +285,39 @@ public class App extends Application {
 
     }
 
+    public void updateUser(){
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(User.class, new UserSerializer());
+        Gson gson = gsonBuilder.create();
+        if(isNetworkAvailable()) {
+            Retrofit retrofit = new Retrofit.Builder().baseUrl("https://levensvreugde-lln.herokuapp.com/API/").addConverterFactory(GsonConverterFactory.create(gson)).build();
+            backendCalls = retrofit.create(BackendCalls.class);
+
+            Call<User> call = backendCalls.updateUser(user.profile.getTarget().getEmail(), user);
+
+            Log.i("test","gestart");
+
+            call.enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    Log.i("test","geslaagd");
+                    if (response.isSuccessful()) {
+                        saveUser(response.body());
+                        mainActivity.continueToLoginScreen();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Log.i("test","gefaald");
+                    t.printStackTrace();
+                }
+            });
+        }else {
+            //eersteKeerOpenenStap4Fragment.setFoutBoodschap("controleer of u wel internet heeft");
+        }
+    }
+
     public void checkUserPassword(String password, final FragmentActivity activity) {
 
         if(isNetworkAvailable()) {
@@ -438,7 +470,11 @@ public class App extends Application {
             call.enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
-                    getNewCreatedUserFromBackend(user.profile.getTarget().getEmail());
+                    if(response.isSuccessful()){
+                        getNewCreatedUserFromBackend(user.profile.getTarget().getEmail());
+                    }else{
+                        mainActivity.continueToLoginScreen();
+                    }
                 }
 
                 @Override

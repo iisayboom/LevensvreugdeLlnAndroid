@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.dreeki.projectleerlingenapp.Activities.SettingsListView;
+import com.example.dreeki.projectleerlingenapp.App;
 import com.example.dreeki.projectleerlingenapp.Interfaces.SettingsInterface;
 import com.example.dreeki.projectleerlingenapp.Models.User;
 import com.example.dreeki.projectleerlingenapp.R;
@@ -66,9 +67,10 @@ public class InstellingenFragment extends Fragment implements View.OnClickListen
         }
 
         user.profile.getTarget().setName(values.get(0));
-        user.mentor.getTarget().setName(values.get(2));
-        user.profile.getTarget().setEmail(values.get(3));
-        //user.profile.getTarget().setPassword(values.get(4));
+        user.mentor.getTarget().setName(values.get(1));
+        user.profile.getTarget().setEmail(values.get(2));
+
+        ((App)getActivity().getApplication()).updateUser();
     }
 
     private void vulLijst(View v) {

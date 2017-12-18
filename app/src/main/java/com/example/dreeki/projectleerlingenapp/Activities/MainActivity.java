@@ -72,8 +72,6 @@ public class MainActivity extends AppCompatActivity implements EersteKeerOpenenI
         app = ((App) getApplication());
         app.setMainActivity(this);
         userBox = app.getBoxStore().boxFor(User.class);
-        userBox.removeAll();
-        try {
             user = userBox.getAll().get(0);
             app.setUser(user);
         } catch (Exception e) {
@@ -87,13 +85,9 @@ public class MainActivity extends AppCompatActivity implements EersteKeerOpenenI
             ft.replace(R.id.fragment_container, f);
             ft.addToBackStack(null);
             ft.commit();
-        } else {
-            LoginFragment f = new LoginFragment();
-            FragmentManager fm = getSupportFragmentManager();
-            FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.fragment_container, f);
-            ft.addToBackStack(null);
-            ft.commit();
+
+        }else {
+            app.checkDataVersion();
         }
 
     }
