@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements EersteKeerOpenenI
         app = ((App)getApplication());
         app.setMainActivity(this);
         userBox = app.getBoxStore().boxFor(User.class);
-        userBox.removeAll();
+        //userBox.removeAll();
         try{
             user = userBox.getAll().get(0);
             app.setUser(user);
@@ -87,13 +87,8 @@ public class MainActivity extends AppCompatActivity implements EersteKeerOpenenI
             ft.replace(R.id.fragment_container, f);
             ft.addToBackStack(null);
             ft.commit();
-        }else{
-            LoginFragment f = new LoginFragment();
-            FragmentManager fm = getSupportFragmentManager();
-            FragmentTransaction ft = fm.beginTransaction();
-            ft.replace(R.id.fragment_container, f);
-            ft.addToBackStack(null);
-            ft.commit();
+        }else {
+            app.checkDataVersion();
         }
 
     }
@@ -229,8 +224,6 @@ public class MainActivity extends AppCompatActivity implements EersteKeerOpenenI
             u.profile.getTarget().home.setTarget(homeLocatie);
             u.mentor.setTarget(mentor);
             app.sendUserToBackend(u);
-        }else{
-            ((App)getApplication()).checkDataVersion();
         }
     }
 
