@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -46,7 +47,7 @@ public class SettingsListView extends LinearLayout {
         TextView t1 = findViewById(R.id.txtTitel);
         t1.setText(titel);
 
-        TextView t2 = findViewById(R.id.txtStraat);
+        EditText t2 = findViewById(R.id.txtStraat);
         t2.setText(inhoud);
     }
 
@@ -57,16 +58,16 @@ public class SettingsListView extends LinearLayout {
         ImageView i = findViewById(R.id.imgPrentje);
         i.setImageResource(image);
 
-        TextView t1 = findViewById(R.id.txtStraat);
+        EditText t1 = findViewById(R.id.txtStraat);
         t1.setText(street);
 
-        TextView t2 = findViewById(R.id.txtNummer);
+        EditText t2 = findViewById(R.id.txtNummer);
         t2.setText(number);
 
-        TextView t3 = findViewById(R.id.txtPostcode);
+        EditText t3 = findViewById(R.id.txtPostcode);
         t3.setText(postal + "");
 
-        TextView t4 = findViewById(R.id.txtStad);
+        EditText t4 = findViewById(R.id.txtStad);
         t4.setText(city);
     }
 }

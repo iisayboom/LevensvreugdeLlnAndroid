@@ -42,7 +42,8 @@ public class ProblemAdapter extends BaseAdapter {
     }
 
     public void setProblems(List<Problem> problems) {
-        this.problems = problems;
+        this.problems.clear();
+        this.problems.addAll(problems);
         Problem panicProblem = new Problem(0,"Help", R.drawable.phone,"");
         this.problems.add(panicProblem);
         notifyDataSetChanged();

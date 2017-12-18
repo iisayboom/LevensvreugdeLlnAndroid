@@ -21,8 +21,8 @@ public class User {
     public ToOne<Mentor> mentor;
     @Transient
     public TravelingState travelingState;
-    private static User user;
     private String firebaseUID;
+    private int dataVersion;
 
 
     public User() {
@@ -31,22 +31,6 @@ public class User {
 
     public User(long id){
         this.id = id;
-    }
-
-    public static User get(long id) {
-        if (user == null) {
-            user = new User(id);
-        }
-
-        return get();
-    }
-
-    public static User get() {
-        if(user == null) {
-            user = new User(6);
-        }
-
-        return user;
     }
 
     public TravelingState getTravelingState() {
@@ -67,5 +51,13 @@ public class User {
 
     public void setFirebaseUID(String firebaseUID) {
         this.firebaseUID = firebaseUID;
+    }
+
+    public void setDataVersion(int dataVersion) {
+        this.dataVersion = dataVersion;
+    }
+
+    public int getDataVersion() {
+        return dataVersion;
     }
 }

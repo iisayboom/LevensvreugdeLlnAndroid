@@ -2,10 +2,12 @@ package com.example.dreeki.projectleerlingenapp.Fragments;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -24,11 +26,13 @@ import android.widget.TextView;
 
 import com.example.dreeki.projectleerlingenapp.Activities.RouteActivity;
 import com.example.dreeki.projectleerlingenapp.Activities.SettingsActivity;
+import com.example.dreeki.projectleerlingenapp.App;
 import com.example.dreeki.projectleerlingenapp.Interfaces.EersteKeerOpenenInterface;
 import com.example.dreeki.projectleerlingenapp.Models.User;
 import com.example.dreeki.projectleerlingenapp.R;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -37,13 +41,11 @@ import static android.app.Activity.RESULT_OK;
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
     private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 0;
-    private static final int REQUEST_TAKE_PHOTO = 2;
-    private static final String LOG_TAG = "tag";
     private String m_Text;
     private User user;
     private ImageView ivNood;
     private ImageView imageView;
-    private String mCurrentPhotoPath;
+    private Bitmap bitmap;
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -63,8 +65,14 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         tv.setText(tv.getText().toString().replace("{persoon}", user.profile.getTarget().getName()));
 
+        Bitmap img = loadImageBitmap(getContext().getApplicationContext(), "profielfoto");
+
         imageView = v.findViewById(R.id.imagePrent);
-        imageView.setImageResource(user.profile.getTarget().getPersonalPicture());
+        if(img != null){
+            imageView.setImageBitmap(img);
+        } else{
+            imageView.setImageResource(R.drawable.construction_icon);
+        }
 
         ImageView iv = v.findViewById(R.id.btnSettings);
         iv.setOnClickListener(new View.OnClickListener() {
@@ -83,8 +91,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         m_Text = input.getText().toString();
-                            Intent intentSettings = new Intent(getActivity(), SettingsActivity.class);
-                            startActivity(intentSettings);
+                        ((App)getActivity().getApplication()).checkUserPassword(m_Text, getActivity());
                     }
                 });
                 builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -100,8 +107,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         ivNood = v.findViewById(R.id.btnNood);
         ivNood.setOnClickListener(this);
-
-        getAlbumStorageDir("FotoNiels");
 
         return v;
     }
@@ -138,24 +143,22 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getContext().getPackageManager()) != null) {
-            // Create the File where the photo should go
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                // Error occurred while creating the File
-            }
-            // Continue only if the File was successfully created
-            if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(getContext(), "com.example.android.fileprovider", photoFile);
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-            }
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            bitmap = (Bitmap) extras.get("data");
+            ((App)getActivity().getApplication()).setPersoonIcoon(bitmap);
+            ((App)getActivity().getApplication()).savePersonalPicture(bitmap);
+        }
+    }
+
+    /*
     private void galleryAddPic() {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         File f = new File(mCurrentPhotoPath);
@@ -164,25 +167,15 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         getContext().sendBroadcast(mediaScanIntent);
     }
 
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            imageView.setImageBitmap(imageBitmap);
-        }
-    }
-
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
+                imageFileName,
+                ".jpg",
+                storageDir
         );
 
         // Save a file: path for use with ACTION_VIEW intents
@@ -190,7 +183,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         return image;
     }
 
-    /* Checks if external storage is available for read and write */
     public boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state)) {
@@ -199,7 +191,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         return false;
     }
 
-    /* Checks if external storage is available to at least read */
     public boolean isExternalStorageReadable() {
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state) ||
@@ -218,4 +209,22 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         }
         return file;
     }
+    */
+
+    public Bitmap loadImageBitmap(Context context, String imageName) {
+        Bitmap bitmap = null;
+        FileInputStream fiStream;
+        try {
+            File file = context.getApplicationContext().getFileStreamPath(imageName);
+            if (file.exists()) Log.d("file", imageName);
+            fiStream = context.openFileInput(imageName);
+            bitmap = BitmapFactory.decodeStream(fiStream);
+            fiStream.close();
+        } catch (Exception e) {
+            Log.d("saveImage", "Exception 3, Something went wrong!");
+            e.printStackTrace();
+        }
+        return bitmap;
+    }
+
 }

@@ -34,6 +34,8 @@ public class UserDeserialiser implements JsonDeserializer<User> {
         final int userImage = R.drawable.worker;
         final String userEmail = jsonUser.get("email").getAsString();
 
+        final int userDataVersion = jsonUser.get("dataVersion").getAsInt();
+
         final JsonObject jsonUserHoofdBegeleider = jsonUser.getAsJsonObject("hoofdMentor");
         final String jsonUserHoofdBegeleiderName = jsonUserHoofdBegeleider.get("username").getAsString();
         final String jsonUserHoofdBegeleiderPhone = jsonUserHoofdBegeleider.get("phone").getAsString();
@@ -45,14 +47,14 @@ public class UserDeserialiser implements JsonDeserializer<User> {
         //final String adressId = jsonUserAdress.get("_id").getAsString();
 
         //final int adressImage = jsonUserAdress.get("_id").getAsInt();
-        final int adressImage = R.drawable.huis;
+        //final int adressImage = R.drawable.huis;
         final String adressStreet = jsonUserAdress.get("street").getAsString();
         final int adressPos = jsonUserAdress.get("postalCode").getAsInt();
         final String adressCity = jsonUserAdress.get("city").getAsString();
         final String adressNumber = jsonUserAdress.get("number").getAsString();
         final String adressTitle = jsonUserAdress.get("title").getAsString();
 
-        final Locatie homeAdress = new Locatie(0, adressImage, adressStreet,adressCity,adressNumber,adressPos,adressTitle);
+        final Locatie homeAdress = new Locatie(0, adressStreet,adressCity,adressNumber,adressPos,adressTitle);
 
         final List<Route> userRoutes = new ArrayList<>();
         final JsonArray jsonRoutes = jsonUser.getAsJsonArray("routes");
@@ -64,21 +66,21 @@ public class UserDeserialiser implements JsonDeserializer<User> {
             //final String adressIdBegin = begin.get("begin").getAsString();
 
             //final int adressImageBegin = begin.get("_id").getAsInt();
-            final int adressImageBegin = R.drawable.huis;
+            final String adressImageBegin = replaceImgurThings(begin.get("image").getAsString());
             final String adressStreetBegin = begin.get("street").getAsString();
             final int adressPosBegin = begin.get("postalCode").getAsInt();
             final String adressCityBegin = begin.get("city").getAsString();
             final String adressNumberBegin = begin.get("number").getAsString();
             final String adressTitleBegin = begin.get("title").getAsString();
-            //final String adressVerplaatsManierBegin = checkpoint.get("verplaatsWijze").getAsString();
-            final String adressVerplaatsManierBegin = "Te voet";
+            //final String adressVerplaatsManierBegin = begin.get("verplaatsWijze").getAsString();
+            final String adressVerplaatsManierBegin = "Bus";
             final Locatie beginLocatie = new Locatie(0,adressImageBegin, adressStreetBegin, adressCityBegin, adressNumberBegin, adressPosBegin, adressTitleBegin, adressVerplaatsManierBegin);
 
             final JsonObject end = rObj.getAsJsonObject("end");
             //final String adressIdEnd = end.get("id").getAsString();
 
             //final int adressImageEnd = end.get("_id").getAsInt();
-            final int adressImageEnd = R.drawable.bus;
+            final String adressImageEnd = replaceImgurThings(end.get("image").getAsString());
             final String adressStreetEnd = end.get("street").getAsString();
             final int adressPosEnd = end.get("postalCode").getAsInt();
             final String adressCityEnd = end.get("city").getAsString();
@@ -98,33 +100,29 @@ public class UserDeserialiser implements JsonDeserializer<User> {
                 //final String adressIdcheckpoint = checkpoint.get("id").getAsString();
 
                 //final int adressImagecheckpoint = checkpoint.get("_id").getAsInt();
-                final int adressImagecheckpoint = R.drawable.huis;
+                final String adressImagecheckpoint = replaceImgurThings(checkpoint.get("image").getAsString());
                 final String adressStreetcheckpoint = checkpoint.get("street").getAsString();
                 final int adressPoscheckpoint = checkpoint.get("postalCode").getAsInt();
                 final String adressCitycheckpoint = checkpoint.get("city").getAsString();
                 final String adressNumbercheckpoint = checkpoint.get("number").getAsString();
                 final String adressTitlecheckpoint = checkpoint.get("title").getAsString();
                 final String adressCluecheckpoint = checkpoint.get("aanwijzing").getAsString();
-                //final String adressVerplaatsManierCheckpoint = checkpoint.get("verplaatsWijze").getAsString();
-                final String adressVerplaatsManierCheckpoint = "Te voet";
+                final String adressVerplaatsManierCheckpoint = "Bus";
                 routeCheckpoints.add(new Locatie(0,adressImagecheckpoint, adressStreetcheckpoint, adressCitycheckpoint, adressNumbercheckpoint, adressPoscheckpoint, adressTitlecheckpoint, adressCluecheckpoint, adressVerplaatsManierCheckpoint));
-
-                                                /*
-
-                                                    public Locatie(long id, int picture, String street, String city, String number, int postalCode, String title){
-                                                    this(id,picture,street,city,number,postalCode,title, "","");
-                                                }
-
-                                                    public Locatie(long id, int picture, String street, String city, String number, int postalCode, String title, String aanwijzing, String state){
-                                                 */
-
-
             }
+            final JsonObject begeleider = rObj.getAsJsonObject("routeMentor");
+
+            final String begeleiderNaam = begeleider.get("username").getAsString();
+            final String begeleiderNummer = begeleider.get("phone").getAsString();
+
+            Mentor mentor = new Mentor(0,begeleiderNaam, begeleiderNummer);
+
             Route route = new Route(0);
             Log.i("fff", beginLocatie.toString());
             route.begin.setTarget(beginLocatie);
             route.end.setTarget(endLocatie);
             route.checkpoints.addAll(routeCheckpoints);
+            route.routeMentor.setTarget(mentor);
             userRoutes.add(route);
         }
 
@@ -133,10 +131,21 @@ public class UserDeserialiser implements JsonDeserializer<User> {
 
         final User user = new User(0);
         user.profile.setTarget(profile);
+        user.setDataVersion(userDataVersion);
         user.routes.addAll(userRoutes);
         user.mentor.setTarget(hoofdbegeleider);
 
         return user;
+    }
+
+    private String replaceImgurThings(String image) {
+        String path = image.replace("https://i.imgur.com/","");
+
+        //add l to ge small image from imgur
+        String nameT = path.replaceAll(".jpg|.png","");
+        String imageT = path.replaceAll(nameT,nameT + "s");
+
+        return imageT;
     }
 
 }

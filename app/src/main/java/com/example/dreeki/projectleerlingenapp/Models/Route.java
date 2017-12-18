@@ -15,6 +15,7 @@ public class Route {
     public ToOne<Locatie> begin;
     public ToOne<Locatie> end;
     public ToMany<Locatie> checkpoints;
+    public ToOne<Mentor> routeMentor;
 
     public Route() {
 

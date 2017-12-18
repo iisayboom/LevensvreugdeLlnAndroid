@@ -34,47 +34,66 @@ public class EersteKeerOpenenStap2Fragment extends Fragment implements View.OnCl
 
         b1.setOnClickListener(this);
         b2.setOnClickListener(this);
-        i2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(selected == false && maleIsSelected == false) {
-                    i2.setImageResource(R.drawable.female_selected);
-                    selected = true;
-                    femaleIsSelected = true;
-                } else if (maleIsSelected == false) {
-                    i2.setImageResource(R.drawable.construction_icon);
-                    selected = false;
-                    femaleIsSelected = false;
-                }
 
+        int prentId = ((EersteKeerOpenenInterface) getActivity()).getPicture();
+            if(prentId == 2131230896) {
+                i3.setImageResource(R.drawable.male_selected);
+                maleIsSelected = true;
+                selected = true;
                 lastClicked = 1;
-            }
-        });
-        i3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(selected == false && femaleIsSelected == false ) {
-                    i3.setImageResource(R.drawable.male_selected);
-                    selected = true;
-                    maleIsSelected = true;
-                } else if(femaleIsSelected == false){
-                    i3.setImageResource(R.drawable.worker);
-                    selected = false;
-                    maleIsSelected = false;
-                }
-
+            } else if(prentId == 2131230837) {
+                i2.setImageResource(R.drawable.female_selected);
+                femaleIsSelected = true;
+                selected = true;
                 lastClicked = 2;
+            } else {
+                i2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(selected == false && maleIsSelected == false) {
+                            i2.setImageResource(R.drawable.female_selected);
+                            selected = true;
+                            femaleIsSelected = true;
+                        } else if(selected == true && maleIsSelected == true) {
+                            i2.setImageResource(R.drawable.female_selected);
+                            i3.setImageResource(R.drawable.worker);
+                            selected = true;
+                            femaleIsSelected = true;
+                        } else if (maleIsSelected == false) {
+                            i2.setImageResource(R.drawable.construction_icon);
+                            selected = false;
+                            femaleIsSelected = false;
+                        }
+
+                        lastClicked = 1;
+                    }
+                });
+                i3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(selected == false && femaleIsSelected == false ) {
+                            i3.setImageResource(R.drawable.male_selected);
+                            selected = true;
+                            maleIsSelected = true;
+                        } else if(selected == true && femaleIsSelected == true) {
+                            i3.setImageResource(R.drawable.male_selected);
+                            i2.setImageResource(R.drawable.construction_icon);
+                            selected = true;
+                            maleIsSelected = true;
+                        } else if(femaleIsSelected == false){
+                            i3.setImageResource(R.drawable.worker);
+                            selected = false;
+                            maleIsSelected = false;
+                        }
+
+                        lastClicked = 2;
+                    }
+                });
             }
-        });
 
         TextView tv = v.findViewById(R.id.tvIcoonPersoon);
 
         tv.setText(tv.getText().toString().replace("{persoon}", ((EersteKeerOpenenInterface)getActivity()).getName()));
-
-        int prentId = ((EersteKeerOpenenInterface) getActivity()).getPicture();
-        if(prentId != -1){
-            //selecteer prent met findById(prentId)
-        }
 
         return v;
     }

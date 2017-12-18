@@ -105,7 +105,7 @@ public class TrackingService extends Service implements LocationListener {
                             firebaseUser = auth.getCurrentUser();
                             String path = getString(R.string.firebase_location) + firebaseUser.getUid();
                             mFirebaseTransportRef = FirebaseDatabase.getInstance().getReference(path);
-                            app.getUser().setFirebaseUID(firebaseUser.getUid());
+                            app.setUserFirebaseUid(firebaseUser.getUid());
                             startLocationTracking();
                         } else {
                             // If sign in fails, display a message to the firebaseUser.

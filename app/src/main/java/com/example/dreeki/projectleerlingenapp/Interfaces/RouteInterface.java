@@ -12,7 +12,7 @@ import com.example.dreeki.projectleerlingenapp.Models.Route;
 public interface RouteInterface {
     void toonManieren();
     void toonBenodigdheden();
-    void volgendCheckpoint(String Titel,String subTitel, int src, String stap);
+    void volgendCheckpoint(String Titel,String subTitel, String src, String stap);
     void toonRouteKeuze();
     void toonRoutes();
     void setGekozenRoute(Route r);

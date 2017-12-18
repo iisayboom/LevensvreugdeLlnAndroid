@@ -30,6 +30,9 @@ public class EersteKeerOpenenStap1Fragment extends Fragment implements View.OnCl
         ImageView b = v.findViewById(R.id.btnGoNextStep1);
         b.setOnClickListener(this);
 
+        ImageView ivBack = v.findViewById(R.id.btnBack);
+        ivBack.setOnClickListener(this);
+
         return v;
     }
 
@@ -42,6 +45,9 @@ public class EersteKeerOpenenStap1Fragment extends Fragment implements View.OnCl
                     ((EersteKeerOpenenInterface) getActivity()).setName(naam);
                     ((EersteKeerOpenenInterface) getActivity()).goToStep7();
                 }
+                break;
+            case R.id.btnBack:
+                ((EersteKeerOpenenInterface)getActivity()).showFirstScreen();
                 break;
         }
     }
