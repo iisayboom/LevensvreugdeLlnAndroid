@@ -27,13 +27,13 @@
 
         <TextView
             android:id="@+id/tvIcoonPersoon"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="80dp"
             android:fontFamily="@font/glaresome_regular"
-            android:text="Welke icoon wil {persoon}?"
+            android:text="We gaan nu een profielfoto maken voor {persoon}?"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="30sp"
@@ -41,28 +41,6 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-        <ImageView
-            android:id="@+id/prent2"
-            android:layout_width="180dp"
-            android:layout_height="190dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="32dp"
-            android:clickable="true"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon"
-            app:srcCompat="@drawable/construction_icon" />
-
-        <ImageView
-            android:id="@+id/prent3"
-            android:layout_width="180dp"
-            android:layout_height="190dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="32dp"
-            android:clickable="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon"
-            app:srcCompat="@drawable/worker" />
 
         <ImageView
             android:id="@+id/btnGoNextStep5"
@@ -87,6 +65,15 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView8"
             app:layout_constraintStart_toStartOf="@+id/textView8"
             app:layout_constraintTop_toTopOf="@+id/textView8" />
+
+        <ImageView
+            android:id="@+id/imgFoto"
+            android:layout_width="231dp"
+            android:layout_height="275dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvIcoonPersoon" />
 
     </android.support.constraint.ConstraintLayout>
 

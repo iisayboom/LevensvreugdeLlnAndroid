@@ -1,8 +1,11 @@
 package com.example.dreeki.projectleerlingenapp.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,14 +15,20 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.dreeki.projectleerlingenapp.App;
 import com.example.dreeki.projectleerlingenapp.Interfaces.EersteKeerOpenenInterface;
 import com.example.dreeki.projectleerlingenapp.Models.Mentor;
 import com.example.dreeki.projectleerlingenapp.R;
 
 import java.util.List;
 
+import static android.app.Activity.RESULT_OK;
+
 public class EersteKeerOpenenStap4Fragment extends Fragment implements View.OnClickListener{
     private TextView foutBoodschap;
+    private Bitmap bitmap;
+    private ImageView begeleiderFoto;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,7 +52,9 @@ public class EersteKeerOpenenStap4Fragment extends Fragment implements View.OnCl
             et.setText(((EersteKeerOpenenInterface)getActivity()).getMentorEmail());
         }
 
-
+        begeleiderFoto = v.findViewById(R.id.imgFoto);
+        begeleiderFoto.setImageResource(R.drawable.foto_trekken);
+        begeleiderFoto.setOnClickListener(this);
 
         return v;
     }
@@ -52,7 +63,7 @@ public class EersteKeerOpenenStap4Fragment extends Fragment implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnGoNextStep4:
-                if(controleerVelden()){
+                if(controleerVelden() && bitmap != null){
                     String email = ((EditText)getView().findViewById(R.id.invoerEmailBegeleider)).getText().toString().trim();
                     ((EersteKeerOpenenInterface)getActivity()).setMentorEmail(email);
                     ((EersteKeerOpenenInterface)getActivity()).geefEersteKeerOpenenStapFragmentAanApp(this);
@@ -61,6 +72,9 @@ public class EersteKeerOpenenStap4Fragment extends Fragment implements View.OnCl
                 break;
             case R.id.btnGoPreviousStep4:
                 ((EersteKeerOpenenInterface) getActivity()).goToStep3();
+                break;
+            case R.id.imgFoto:
+                dispatchTakePictureIntent();
                 break;
         }
     }
@@ -83,5 +97,23 @@ public class EersteKeerOpenenStap4Fragment extends Fragment implements View.OnCl
 
     public void setFoutBoodschap(String foutBoodschap) {
         this.foutBoodschap.setText(foutBoodschap);
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getContext().getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            bitmap = (Bitmap) extras.get("data");
+            ((App)getActivity().getApplication()).setPersoonIcoon(bitmap);
+            ((App)getActivity().getApplication()).saveMentorPicture(bitmap);
+            begeleiderFoto.setImageBitmap(bitmap);
+        }
     }
 }

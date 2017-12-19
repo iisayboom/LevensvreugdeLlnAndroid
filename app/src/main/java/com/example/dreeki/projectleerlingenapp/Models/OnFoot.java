@@ -21,14 +21,13 @@ public class OnFoot implements TravelingState {
                 "Ik ben op weg naar \n" +
                         adres +
                         "\nen ik ben de weg kwijt.\n" +
-                        "Kan u mij helpen?\n" + "\n" +
+                        "Kan u mij helpen?\n" +
                         "Bedankt.");
         Problem problem2 = new Problem(0,"Pijn", R.drawable.lekkeband,
                 "Beste,\n" +
                 "Ik heb mij pijn gedaan.\n" +
                 "Kan u mij alstublieft helpen? \n" +
                 "Ik ben onderweg naar " + adres + "\n" +
-                "\n" +
                 "Bedankt.");
         /*
         Problem probleem3 = new Problem(0,"Weg kwijt", R.drawable.lekkeband);

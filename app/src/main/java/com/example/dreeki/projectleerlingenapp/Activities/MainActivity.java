@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements EersteKeerOpenenI
         app = ((App) getApplication());
         app.setMainActivity(this);
         userBox = app.getBoxStore().boxFor(User.class);
+        //userBox.removeAll();
+        try{
             user = userBox.getAll().get(0);
             app.setUser(user);
         } catch (Exception e) {

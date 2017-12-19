@@ -1,7 +1,11 @@
 package com.example.dreeki.projectleerlingenapp.Fragments;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +20,8 @@ import com.example.dreeki.projectleerlingenapp.Interfaces.SettingsInterface;
 import com.example.dreeki.projectleerlingenapp.Models.User;
 import com.example.dreeki.projectleerlingenapp.R;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +29,8 @@ public class InstellingenFragment extends Fragment implements View.OnClickListen
 
     private List<SettingsListView> settingsViews;
     private User user;
+    private Bitmap userfoto;
+    private Bitmap begeleider;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,6 +38,10 @@ public class InstellingenFragment extends Fragment implements View.OnClickListen
         View v =  inflater.inflate(R.layout.fragment_settings, container, false);
 
         user = ((SettingsInterface)getActivity()).getUser();
+
+        userfoto = loadImageBitmap(getContext().getApplicationContext(), "profielfoto");
+
+        begeleider = loadImageBitmap(getContext().getApplicationContext(), "mentorfoto");
 
         vulLijst(v);
 
@@ -78,10 +90,10 @@ public class InstellingenFragment extends Fragment implements View.OnClickListen
 
         settingsViews = new ArrayList<>();
 
-        SettingsListView s1 = new SettingsListView(getContext(), user.profile.getTarget().getPersonalPicture(),"User", user.profile.getTarget().getName());
-        SettingsListView s2 = new SettingsListView(getContext(),R.drawable.begeleider,"Begeleider", user.mentor.getTarget().getName());
+        SettingsListView s1 = new SettingsListView(getContext(), userfoto,"User", user.profile.getTarget().getName());
+        SettingsListView s2 = new SettingsListView(getContext(), begeleider,"Begeleider", user.mentor.getTarget().getName());
         SettingsListView s3 = new SettingsListView(getContext(),R.drawable.email,"Email", user.profile.getTarget().getEmail());
-        SettingsListView s4 = new SettingsListView(getContext(),R.drawable.lock,"Wachtwoord", "test");
+        SettingsListView s4 = new SettingsListView(getContext(),R.drawable.lock,"Wachtwoord", "");
         SettingsListView s5 = new SettingsListView(getContext(), R.drawable.home, user.profile.getTarget().home.getTarget().getStreet(), user.profile.getTarget().home.getTarget().getCity(), user.profile.getTarget().home.getTarget().getNumber(), user.profile.getTarget().home.getTarget().getPostalCode());
 
         settingsViews.add(s1);
@@ -94,5 +106,21 @@ public class InstellingenFragment extends Fragment implements View.OnClickListen
             listView.addView(slv);
         }
 
+    }
+
+    public Bitmap loadImageBitmap(Context context, String imageName) {
+        Bitmap bitmap = null;
+        FileInputStream fiStream;
+        try {
+            File file = context.getApplicationContext().getFileStreamPath(imageName);
+            if (file.exists()) Log.d("file", imageName);
+            fiStream = context.openFileInput(imageName);
+            bitmap = BitmapFactory.decodeStream(fiStream);
+            fiStream.close();
+        } catch (Exception e) {
+            Log.d("saveImage", "Exception 3, Something went wrong!");
+            e.printStackTrace();
+        }
+        return bitmap;
     }
 }

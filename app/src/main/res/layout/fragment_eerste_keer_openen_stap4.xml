@@ -87,13 +87,35 @@
             android:id="@+id/txtFout"
             android:layout_width="292dp"
             android:layout_height="50dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="16dp"
             android:textAlignment="center"
             android:textSize="16sp"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/invoerEmailBegeleider" />
+
+        <ImageView
+            android:id="@+id/imgFoto"
+            android:layout_width="225dp"
+            android:layout_height="193dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/foto_trekken"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Neem een foto van de begeleider"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtFout" />
 
     </android.support.constraint.ConstraintLayout>
 
