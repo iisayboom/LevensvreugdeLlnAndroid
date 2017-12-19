@@ -1,7 +1,13 @@
 package com.example.dreeki.projectleerlingenapp.Fragments;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,15 +15,22 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.dreeki.projectleerlingenapp.App;
 import com.example.dreeki.projectleerlingenapp.Interfaces.EersteKeerOpenenInterface;
+import com.example.dreeki.projectleerlingenapp.Models.User;
 import com.example.dreeki.projectleerlingenapp.R;
+
+import java.io.File;
+import java.io.FileInputStream;
+
+import static android.app.Activity.RESULT_OK;
 
 public class EersteKeerOpenenStap2Fragment extends Fragment implements View.OnClickListener{
 
-    private boolean selected = false;
-    private boolean maleIsSelected = false;
-    private boolean femaleIsSelected = false;
-    private int lastClicked;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private Bitmap bitmap;
+    private Bitmap profielFotoBitmap;
+    private ImageView profielFoto;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,69 +40,13 @@ public class EersteKeerOpenenStap2Fragment extends Fragment implements View.OnCl
 
         ImageView b1 = v.findViewById(R.id.btnGoNextStep5);
         ImageView b2 = v.findViewById(R.id.btnGoPreviousStep8);
-        final ImageView i2 = v.findViewById(R.id.prent2);
-        final ImageView i3 = v.findViewById(R.id.prent3);
-
-
 
         b1.setOnClickListener(this);
         b2.setOnClickListener(this);
 
-        int prentId = ((EersteKeerOpenenInterface) getActivity()).getPicture();
-            if(prentId == 2131230896) {
-                i3.setImageResource(R.drawable.male_selected);
-                maleIsSelected = true;
-                selected = true;
-                lastClicked = 1;
-            } else if(prentId == 2131230837) {
-                i2.setImageResource(R.drawable.female_selected);
-                femaleIsSelected = true;
-                selected = true;
-                lastClicked = 2;
-            } else {
-                i2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(selected == false && maleIsSelected == false) {
-                            i2.setImageResource(R.drawable.female_selected);
-                            selected = true;
-                            femaleIsSelected = true;
-                        } else if(selected == true && maleIsSelected == true) {
-                            i2.setImageResource(R.drawable.female_selected);
-                            i3.setImageResource(R.drawable.worker);
-                            selected = true;
-                            femaleIsSelected = true;
-                        } else if (maleIsSelected == false) {
-                            i2.setImageResource(R.drawable.construction_icon);
-                            selected = false;
-                            femaleIsSelected = false;
-                        }
-
-                        lastClicked = 1;
-                    }
-                });
-                i3.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(selected == false && femaleIsSelected == false ) {
-                            i3.setImageResource(R.drawable.male_selected);
-                            selected = true;
-                            maleIsSelected = true;
-                        } else if(selected == true && femaleIsSelected == true) {
-                            i3.setImageResource(R.drawable.male_selected);
-                            i2.setImageResource(R.drawable.construction_icon);
-                            selected = true;
-                            maleIsSelected = true;
-                        } else if(femaleIsSelected == false){
-                            i3.setImageResource(R.drawable.worker);
-                            selected = false;
-                            maleIsSelected = false;
-                        }
-
-                        lastClicked = 2;
-                    }
-                });
-            }
+        profielFoto = v.findViewById(R.id.imgFoto);
+        profielFoto.setImageResource(R.drawable.foto_trekken);
+        profielFoto.setOnClickListener(this);
 
         TextView tv = v.findViewById(R.id.tvIcoonPersoon);
 
@@ -102,19 +59,35 @@ public class EersteKeerOpenenStap2Fragment extends Fragment implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnGoNextStep5:
-                if(lastClicked == 1) {
-                    ((EersteKeerOpenenInterface) getActivity()).setPicture(R.drawable.construction_icon);
-                } else if(lastClicked == 2) {
-                    ((EersteKeerOpenenInterface) getActivity()).setPicture(R.drawable.worker);
-                }
-
-                if(((EersteKeerOpenenInterface) getActivity()).getPicture() != -1){
+                if(bitmap != null) {
                     ((EersteKeerOpenenInterface) getActivity()).goToStep3();
                 }
                 break;
             case R.id.btnGoPreviousStep8:
                 ((EersteKeerOpenenInterface) getActivity()).goToStep8();
                 break;
+
+            case R.id.imgFoto:
+                dispatchTakePictureIntent();
+                break;
+        }
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getContext().getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            bitmap = (Bitmap) extras.get("data");
+            ((App)getActivity().getApplication()).setPersoonIcoon(bitmap);
+            ((App)getActivity().getApplication()).savePersonalPicture(bitmap);
+            profielFoto.setImageBitmap(bitmap);
         }
     }
 }

@@ -185,13 +185,13 @@ public class App extends Application {
                         // error case
                         switch (response.code()) {
                             case 404:
-                                eersteKeerOpenenStap4Fragment.setFoutBoodschap("ier se doar se, tis kapot eh");
+                                eersteKeerOpenenStap4Fragment.setFoutBoodschap("Contacteer de administrator");
                                 break;
                             case 500:
-                                eersteKeerOpenenStap4Fragment.setFoutBoodschap("gelieve eerst de begeleider te registreren op de site");
+                                eersteKeerOpenenStap4Fragment.setFoutBoodschap("Gelieve eerst de begeleider te registreren op de site");
                                 break;
                             default:
-                                eersteKeerOpenenStap4Fragment.setFoutBoodschap("ai ai ai groot probleem");
+                                eersteKeerOpenenStap4Fragment.setFoutBoodschap("Er is een probleem opgetreden!");
                                 break;
                         }
                         user = null;
@@ -421,6 +421,10 @@ public class App extends Application {
 
     public void savePersonalPicture(Bitmap bitmap) {
         new SaveFile().execute("profielfoto" + bitmap);
+    }
+
+    public void saveMentorPicture(Bitmap bitmap) {
+        new SaveFile().execute("mentorfoto" + bitmap);
     }
 /*
     public void checkMentorEmail(String email){

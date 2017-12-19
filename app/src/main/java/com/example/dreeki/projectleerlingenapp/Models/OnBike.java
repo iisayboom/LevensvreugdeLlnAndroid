@@ -28,12 +28,11 @@ public class OnBike implements TravelingState {
                 "Ik heb mij pijn gedaan.\n" +
                 "Kan u mij alstublieft helpen? \n" +
                 "Ik ben onderweg naar " + adres + "\n" +
-                "\n" +
                 "Bedankt.");
         Problem problem3 = new Problem(0,"Lekke band", R.drawable.lekkeband,"Beste,\n" +
                 "Ik heb een lekkke band.\n" +
                 "Kan u mij alstublieft helpen? \n" +
-                "Ik ben onderweg naar " + adres + "\n" +"\n" +
+                "Ik ben onderweg naar " + adres + "\n" +
                 "Bedankt.");
 
         problemen.add(problem1);

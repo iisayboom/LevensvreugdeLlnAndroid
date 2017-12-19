@@ -16,19 +16,17 @@ public class OnTrain implements TravelingState {
     public OnTrain(String adres) {
         problemen = new ArrayList<>();
 
-        Problem problem1 = new Problem(0,"Niet afgestap", R.drawable.lekkeband,"Beste,\n" +
+        Problem problem1 = new Problem(0,"Niet afgestapt", R.drawable.lekkeband,"Beste,\n" +
                 "Ik ben vergeten afstappen. Ik ben op weg naar\n" +
                 adres +
                 "\n" +
                 "Kan u mij helpen?\n" +
-                "\n" +
                 "Bedankt.");
         Problem problem2 = new Problem(0,"Verkeerde halte", R.drawable.lekkeband,"Beste,\n" +
                 "Ik ben bij de verkeerde halte afgestapt. Ik ben op weg naar\n" +
                 adres +
                 "\n" +
                 "Kan u mij helpen?\n" +
-                "\n" +
                 "Bedankt.");
 
         problemen.add(problem1);

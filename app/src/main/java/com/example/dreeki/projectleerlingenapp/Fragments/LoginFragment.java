@@ -45,9 +45,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private User user;
     private ImageView ivNood;
     private ImageView imageView;
-    private Bitmap bitmap;
-
     private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private Bitmap bitmap;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
@@ -65,14 +64,17 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         tv.setText(tv.getText().toString().replace("{persoon}", user.profile.getTarget().getName()));
 
-        Bitmap img = loadImageBitmap(getContext().getApplicationContext(), "profielfoto");
+        //Bitmap img = loadImageBitmap(getContext().getApplicationContext(), "profielfoto");
+        Bitmap img = loadImageBitmap(getContext().getApplicationContext(), "mentorfoto");
 
         imageView = v.findViewById(R.id.imagePrent);
         if(img != null){
             imageView.setImageBitmap(img);
         } else{
-            imageView.setImageResource(R.drawable.construction_icon);
+            imageView.setImageResource(R.drawable.foto_trekken);
         }
+
+        imageView.setOnClickListener(this);
 
         ImageView iv = v.findViewById(R.id.btnSettings);
         iv.setOnClickListener(new View.OnClickListener() {
@@ -119,16 +121,18 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 startActivity(intentRoutes);
                 break;
             case R.id.btnNood:
+                callUser();
+                break;
+            case R.id.imagePrent:
                 dispatchTakePictureIntent();
-                //callUser();
                 break;
         }
     }
 
     public void callUser(){
-        String number = ("tel:" + "1234");
+        String number = user.mentor.getTarget().getPhoneNumber();
         Intent intent = new Intent(Intent.ACTION_CALL);
-        intent.setData(Uri.parse(number));
+        intent.setData(Uri.parse("tel:"+number));
 
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.CALL_PHONE},MY_PERMISSIONS_REQUEST_CALL_PHONE);
@@ -139,6 +143,22 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 e.printStackTrace();
             }
         }
+    }
+
+    public Bitmap loadImageBitmap(Context context, String imageName) {
+        Bitmap bitmap = null;
+        FileInputStream fiStream;
+        try {
+            File file = context.getApplicationContext().getFileStreamPath(imageName);
+            if (file.exists()) Log.d("file", imageName);
+            fiStream = context.openFileInput(imageName);
+            bitmap = BitmapFactory.decodeStream(fiStream);
+            fiStream.close();
+        } catch (Exception e) {
+            Log.d("saveImage", "Exception 3, Something went wrong!");
+            e.printStackTrace();
+        }
+        return bitmap;
     }
 
     private void dispatchTakePictureIntent() {
@@ -155,76 +175,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             bitmap = (Bitmap) extras.get("data");
             ((App)getActivity().getApplication()).setPersoonIcoon(bitmap);
             ((App)getActivity().getApplication()).savePersonalPicture(bitmap);
+            imageView.setImageBitmap(bitmap);
         }
-    }
-
-    /*
-    private void galleryAddPic() {
-        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        File f = new File(mCurrentPhotoPath);
-        Uri contentUri = Uri.fromFile(f);
-        mediaScanIntent.setData(contentUri);
-        getContext().sendBroadcast(mediaScanIntent);
-    }
-
-    private File createImageFile() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imageFileName,
-                ".jpg",
-                storageDir
-        );
-
-        // Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = image.getAbsolutePath();
-        return image;
-    }
-
-    public boolean isExternalStorageWritable() {
-        String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isExternalStorageReadable() {
-        String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state) ||
-                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
-            return true;
-        }
-        return false;
-    }
-
-    public File getAlbumStorageDir(String fotoNiels) {
-        // Get the directory for the user's public pictures directory.
-        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), fotoNiels);
-
-        if (!file.mkdirs()) {
-            Log.e(LOG_TAG, "Directory not created");
-        }
-        return file;
-    }
-    */
-
-    public Bitmap loadImageBitmap(Context context, String imageName) {
-        Bitmap bitmap = null;
-        FileInputStream fiStream;
-        try {
-            File file = context.getApplicationContext().getFileStreamPath(imageName);
-            if (file.exists()) Log.d("file", imageName);
-            fiStream = context.openFileInput(imageName);
-            bitmap = BitmapFactory.decodeStream(fiStream);
-            fiStream.close();
-        } catch (Exception e) {
-            Log.d("saveImage", "Exception 3, Something went wrong!");
-            e.printStackTrace();
-        }
-        return bitmap;
     }
 
 }

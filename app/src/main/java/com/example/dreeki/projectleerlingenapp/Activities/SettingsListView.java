@@ -1,6 +1,7 @@
 package com.example.dreeki.projectleerlingenapp.Activities;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -18,6 +19,11 @@ import com.example.dreeki.projectleerlingenapp.R;
 public class SettingsListView extends LinearLayout {
 
     public SettingsListView(Context context, int image, String titel, String inhoud) {
+        super(context);
+        vulLijst(image,titel, inhoud);
+    }
+
+    public SettingsListView(Context context, Bitmap image, String titel, String inhoud) {
         super(context);
         vulLijst(image,titel, inhoud);
     }
@@ -43,6 +49,20 @@ public class SettingsListView extends LinearLayout {
 
         ImageView i = findViewById(R.id.imgPrentje);
         i.setImageResource(image);
+
+        TextView t1 = findViewById(R.id.txtTitel);
+        t1.setText(titel);
+
+        EditText t2 = findViewById(R.id.txtStraat);
+        t2.setText(inhoud);
+    }
+
+    public void vulLijst(Bitmap image, String titel, String inhoud) {
+        LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater.inflate(R.layout.list_item_settings, this, true);
+
+        ImageView i = findViewById(R.id.imgPrentje);
+        i.setImageBitmap(image);
 
         TextView t1 = findViewById(R.id.txtTitel);
         t1.setText(titel);
