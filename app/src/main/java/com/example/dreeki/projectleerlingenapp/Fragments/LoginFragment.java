@@ -44,7 +44,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private String m_Text;
     private User user;
     private ImageView ivNood;
-    private ImageView imageView;
+    private ImageView imageViewUser;
+    private ImageView imageViewMentor;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private Bitmap bitmap;
 
@@ -64,17 +65,16 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         tv.setText(tv.getText().toString().replace("{persoon}", user.profile.getTarget().getName()));
 
-        //Bitmap img = loadImageBitmap(getContext().getApplicationContext(), "profielfoto");
-        Bitmap img = loadImageBitmap(getContext().getApplicationContext(), "mentorfoto");
+        Bitmap userImage = loadImageBitmap(getContext().getApplicationContext(), "profielfoto");
 
-        imageView = v.findViewById(R.id.imagePrent);
-        if(img != null){
-            imageView.setImageBitmap(img);
+        imageViewUser = v.findViewById(R.id.imagePrent);
+        if(userImage != null){
+            imageViewUser.setImageBitmap(userImage);
         } else{
-            imageView.setImageResource(R.drawable.foto_trekken);
+            imageViewUser.setImageResource(R.drawable.foto_trekken);
         }
 
-        imageView.setOnClickListener(this);
+        imageViewUser.setOnClickListener(this);
 
         ImageView iv = v.findViewById(R.id.btnSettings);
         iv.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +85,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
                 View viewInflated = LayoutInflater.from(getContext()).inflate(R.layout.popup_window, (ViewGroup) getView(), false);
 
-                final EditText input = (EditText) viewInflated.findViewById(R.id.input);
+                final EditText input = viewInflated.findViewById(R.id.input);
                 builder.setView(viewInflated);
 
                 builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -108,6 +108,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         });
 
         ivNood = v.findViewById(R.id.btnNood);
+        ivNood.setImageResource(R.drawable.help_rond);
         ivNood.setOnClickListener(this);
 
         return v;
@@ -130,7 +131,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     }
 
     public void callUser(){
-        String number = user.mentor.getTarget().getPhoneNumber();
+        //String number = user.mentor.getTarget().getPhoneNumber();
+        String number = "0499898280";
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:"+number));
 
@@ -175,7 +177,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             bitmap = (Bitmap) extras.get("data");
             ((App)getActivity().getApplication()).setPersoonIcoon(bitmap);
             ((App)getActivity().getApplication()).savePersonalPicture(bitmap);
-            imageView.setImageBitmap(bitmap);
+            imageViewUser.setImageBitmap(bitmap);
         }
     }
 

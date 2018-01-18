@@ -1,5 +1,9 @@
 package com.example.dreeki.projectleerlingenapp.Models;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+
 import com.example.dreeki.projectleerlingenapp.Utils.MaterialDesignColor;
 
 import io.objectbox.annotation.Convert;

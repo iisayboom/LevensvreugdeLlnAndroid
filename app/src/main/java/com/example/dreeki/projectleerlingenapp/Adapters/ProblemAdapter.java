@@ -1,5 +1,6 @@
 package com.example.dreeki.projectleerlingenapp.Adapters;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;

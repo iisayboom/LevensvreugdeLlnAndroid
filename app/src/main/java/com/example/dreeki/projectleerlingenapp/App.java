@@ -167,6 +167,7 @@ public class App extends Application {
         user = u;
         if(isNetworkAvailable()) {
             Retrofit retrofit = new Retrofit.Builder().baseUrl("https://levensvreugde-lln.herokuapp.com/API/").addConverterFactory(GsonConverterFactory.create(gson)).build();
+            //Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:3000/API/").addConverterFactory(GsonConverterFactory.create(gson)).build();
             backendCalls = retrofit.create(BackendCalls.class);
 
             Call<User> call = backendCalls.addStudent(user);
@@ -218,6 +219,7 @@ public class App extends Application {
 
         if(isNetworkAvailable()) {
             Retrofit retrofit = new Retrofit.Builder().baseUrl("https://levensvreugde-lln.herokuapp.com/API/").addConverterFactory(GsonConverterFactory.create(gson)).build();
+            //Retrofit retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:3000/API/").addConverterFactory(GsonConverterFactory.create(gson)).build();
             backendCalls = retrofit.create(BackendCalls.class);
 
 
@@ -388,7 +390,7 @@ public class App extends Application {
         }
     }
 
-    public class SaveFile extends AsyncTask<String, String, String> {
+    public class SaveUserFile extends AsyncTask<String, String, String> {
 
 
         @Override
@@ -419,12 +421,43 @@ public class App extends Application {
         }
     }
 
+    public class SaveMentorFile extends AsyncTask<String, String, String> {
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected String doInBackground(String... aurl) {
+            FileOutputStream foStream;
+            try {
+                bitmap = getPersoonIcoon();
+                foStream = getApplicationContext().openFileOutput("mentorfoto", Context.MODE_PRIVATE);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, foStream);
+                foStream.flush();
+                foStream.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String unused) {
+            super.onPostExecute(unused);
+
+        }
+    }
+
     public void savePersonalPicture(Bitmap bitmap) {
-        new SaveFile().execute("profielfoto" + bitmap);
+        new SaveUserFile().execute("profielfoto" + bitmap);
     }
 
     public void saveMentorPicture(Bitmap bitmap) {
-        new SaveFile().execute("mentorfoto" + bitmap);
+        new SaveMentorFile().execute("mentorfoto" + bitmap);
     }
 /*
     public void checkMentorEmail(String email){

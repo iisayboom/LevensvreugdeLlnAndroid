@@ -1,9 +1,11 @@
 package com.example.dreeki.projectleerlingenapp.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,12 +27,20 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.app.Activity.RESULT_OK;
+
 public class InstellingenFragment extends Fragment implements View.OnClickListener {
 
     private List<SettingsListView> settingsViews;
     private User user;
     private Bitmap userfoto;
     private Bitmap begeleider;
+    private ImageView prentjeUser;
+    private ImageView prentjeMentor;
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private Bitmap bitmap;
+    private int gekliktePrent = -1;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,8 +50,6 @@ public class InstellingenFragment extends Fragment implements View.OnClickListen
         user = ((SettingsInterface)getActivity()).getUser();
 
         userfoto = loadImageBitmap(getContext().getApplicationContext(), "profielfoto");
-
-        begeleider = loadImageBitmap(getContext().getApplicationContext(), "mentorfoto");
 
         vulLijst(v);
 
@@ -96,6 +104,26 @@ public class InstellingenFragment extends Fragment implements View.OnClickListen
         SettingsListView s4 = new SettingsListView(getContext(),R.drawable.lock,"Wachtwoord", "");
         SettingsListView s5 = new SettingsListView(getContext(), R.drawable.home, user.profile.getTarget().home.getTarget().getStreet(), user.profile.getTarget().home.getTarget().getCity(), user.profile.getTarget().home.getTarget().getNumber(), user.profile.getTarget().home.getTarget().getPostalCode());
 
+        prentjeUser = s1.findViewById(R.id.imgPrentje);
+        prentjeUser.setImageResource(R.drawable.foto_trekken);
+        prentjeUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gekliktePrent = 1;
+                dispatchTakePictureIntent();
+            }
+        });
+
+        prentjeMentor = s2.findViewById(R.id.imgPrentje);
+        prentjeMentor.setImageResource(R.drawable.foto_trekken);
+        prentjeMentor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gekliktePrent = 2;
+                dispatchTakePictureIntent();
+            }
+        });
+
         settingsViews.add(s1);
         settingsViews.add(s2);
         settingsViews.add(s3);
@@ -122,5 +150,29 @@ public class InstellingenFragment extends Fragment implements View.OnClickListen
             e.printStackTrace();
         }
         return bitmap;
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getContext().getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            bitmap = (Bitmap) extras.get("data");
+            ((App)getActivity().getApplication()).setPersoonIcoon(bitmap);
+            if(gekliktePrent == 1) {
+                ((App)getActivity().getApplication()).savePersonalPicture(bitmap);
+                prentjeUser.setImageBitmap(bitmap);
+            } else if (gekliktePrent == 2) {
+                ((App)getActivity().getApplication()).saveMentorPicture(bitmap);
+                prentjeMentor.setImageBitmap(bitmap);
+            }
+            gekliktePrent = -1;
+        }
     }
 }
