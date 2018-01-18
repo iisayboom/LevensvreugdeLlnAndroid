@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements EersteKeerOpenenI
         checkpoints = new ArrayList<>();
 
         app = ((App) getApplication());
-        app.setMainActivity(this);
+        app.setMainActivity(this);https://stackoverflow.com/questions/36469334/set-width-of-a-fragment-view-dynamically-in-android
         userBox = app.getBoxStore().boxFor(User.class);
         //userBox.removeAll();
         try{

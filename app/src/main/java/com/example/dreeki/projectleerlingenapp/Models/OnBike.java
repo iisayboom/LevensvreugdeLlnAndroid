@@ -17,14 +17,14 @@ public class OnBike implements TravelingState {
     public OnBike(String adres) {
         problemen = new ArrayList<>();
 
-        Problem problem1 = new Problem(0,"Weg kwijt", R.drawable.lekkeband,
+        Problem problem1 = new Problem(0,"Weg kwijt", R.drawable.weg_kwijt,
                 "Beste,\n" +
                         "Ik ben op weg naar\n" +
                         adres +
                         "en ik ben de weg kwijt.\n" +
                         "Kan u mij helpen?\n" + "\n" +
                         "Bedankt.");
-        Problem problem2 = new Problem(0,"Pijn", R.drawable.lekkeband,"Beste,\n" +
+        Problem problem2 = new Problem(0,"Pijn", R.drawable.pijn,"Beste,\n" +
                 "Ik heb mij pijn gedaan.\n" +
                 "Kan u mij alstublieft helpen? \n" +
                 "Ik ben onderweg naar " + adres + "\n" +

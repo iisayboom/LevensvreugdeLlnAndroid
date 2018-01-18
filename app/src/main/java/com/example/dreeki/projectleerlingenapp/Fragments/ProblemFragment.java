@@ -1,8 +1,13 @@
 package com.example.dreeki.projectleerlingenapp.Fragments;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -24,6 +29,8 @@ import com.example.dreeki.projectleerlingenapp.Models.Problem;
 import com.example.dreeki.projectleerlingenapp.R;
 import com.example.dreeki.projectleerlingenapp.Utils.ColorHandlerForAndroidMaterialDesign;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -35,12 +42,14 @@ public class ProblemFragment extends Fragment implements View.OnClickListener, T
     private List<Problem> problems;
     private ColorHandlerForAndroidMaterialDesign colorHandler;
     private TextToSpeech tts;
+    private Bitmap imageMentor;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_problem, container, false);
+        imageMentor = loadImageBitmap(getContext().getApplicationContext(), "mentorfoto");
         problems = new ArrayList<>();
         colorHandler = new ColorHandlerForAndroidMaterialDesign();
         
@@ -75,7 +84,7 @@ public class ProblemFragment extends Fragment implements View.OnClickListener, T
     }
 
     public void callUser(){
-        String number = ("tel:" + "1234");
+        String number = ("tel:" + ((RouteInterface)getActivity()).getRouteKeuze().routeMentor.getTarget().getPhoneNumber());
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse(number));
 
@@ -115,5 +124,21 @@ public class ProblemFragment extends Fragment implements View.OnClickListener, T
         } else {
             Log.e("init failed","init failed");
         }
+    }
+
+    public Bitmap loadImageBitmap(Context context, String imageName) {
+        Bitmap bitmap = null;
+        FileInputStream fiStream;
+        try {
+            File file = context.getApplicationContext().getFileStreamPath(imageName);
+            if (file.exists()) Log.d("file", imageName);
+            fiStream = context.openFileInput(imageName);
+            bitmap = BitmapFactory.decodeStream(fiStream);
+            fiStream.close();
+        } catch (Exception e) {
+            Log.d("saveImage", "Exception 3, Something went wrong!");
+            e.printStackTrace();
+        }
+        return bitmap;
     }
 }
